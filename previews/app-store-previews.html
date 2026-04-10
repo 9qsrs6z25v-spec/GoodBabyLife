@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Good Baby Life - App Store 預覽圖</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -407,23 +408,100 @@
     color: #8A7A8A;
     background: #fff;
   }
+
+  /* Download Buttons */
+  .download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #FFB6C1, #E6E6FA);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    width: 100%;
+    max-width: 390px;
+  }
+  .download-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,182,193,0.4); }
+  .download-btn:active { transform: scale(0.97); }
+  .download-btn.downloading {
+    background: #ccc;
+    pointer-events: none;
+  }
+
+  .download-all-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #FF8FAB, #E6E6FA, #AED8F0);
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    box-shadow: 0 8px 30px rgba(255,182,193,0.35);
+  }
+  .download-all-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,182,193,0.5); }
+  .download-all-btn:active { transform: scale(0.97); }
+
+  .progress-bar {
+    width: 100%;
+    max-width: 500px;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+  }
+  .progress-bar.show { display: block; }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFB6C1, #AED8F0);
+    border-radius: 4px;
+    transition: width 0.3s;
+    width: 0%;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #888;
+    display: none;
+  }
+  .progress-text.show { display: block; }
 </style>
 </head>
 <body>
 
 <h1>Good Baby Life - App Store 預覽圖</h1>
 <div class="instructions">
-  <strong>使用方式：</strong>在瀏覽器中對每個手機畫面截圖，裁切成 <strong>1290 x 2796</strong> 像素（iPhone 6.7"）。<br>
-  或直接在每個畫面上按右鍵 → 「檢查」→ 用 DevTools 截取元素。<br>
-  App Store 需要至少 <strong>3 張</strong>預覽圖。
+  點擊每張預覽圖下方的按鈕即可下載 PNG 圖片。<br>
+  圖片會自動縮放為 <strong>1290 x 2796</strong> 像素（iPhone 6.7" App Store 規格）。<br>
+  也可以點下方按鈕 <strong>一次下載全部 4 張</strong>。
 </div>
+
+<button class="download-all-btn" onclick="downloadAll()">
+  📥 一次下載全部 4 張預覽圖
+</button>
+<div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">下載中...</div>
 
 <div class="preview-row">
 
 <!-- ==================== Screen 1: Dashboard ==================== -->
 <div>
   <div class="preview-label">預覽圖 1 — 首頁儀表板</div>
-  <div class="iphone-frame">
+  <div class="iphone-frame" id="frame1">
     <div class="iphone-screen">
       <div class="status-bar">
         <span class="status-time">9:41</span>
@@ -506,12 +584,13 @@
       </div>
     </div>
   </div>
+  <button class="download-btn" onclick="downloadFrame('frame1', 'GoodBabyLife_1_Dashboard.png', this)">📥 下載 首頁儀表板</button>
 </div>
 
 <!-- ==================== Screen 2: Milk Tracker ==================== -->
 <div>
   <div class="preview-label">預覽圖 2 — 喝奶紀錄</div>
-  <div class="iphone-frame">
+  <div class="iphone-frame" id="frame2">
     <div class="iphone-screen">
       <div class="status-bar">
         <span class="status-time">9:41</span>
@@ -588,6 +667,7 @@
       </div>
     </div>
   </div>
+  <button class="download-btn" onclick="downloadFrame('frame2', 'GoodBabyLife_2_MilkTracker.png', this)">📥 下載 喝奶紀錄</button>
 </div>
 
 </div><!-- end preview-row -->
@@ -597,7 +677,7 @@
 <!-- ==================== Screen 3: Food Tracker ==================== -->
 <div>
   <div class="preview-label">預覽圖 3 — 副食品紀錄</div>
-  <div class="iphone-frame">
+  <div class="iphone-frame" id="frame3">
     <div class="iphone-screen">
       <div class="status-bar">
         <span class="status-time">9:41</span>
@@ -674,12 +754,13 @@
       </div>
     </div>
   </div>
+  <button class="download-btn" onclick="downloadFrame('frame3', 'GoodBabyLife_3_FoodTracker.png', this)">📥 下載 副食品紀錄</button>
 </div>
 
 <!-- ==================== Screen 4: Tips ==================== -->
 <div>
   <div class="preview-label">預覽圖 4 — 可愛小建議</div>
-  <div class="iphone-frame">
+  <div class="iphone-frame" id="frame4">
     <div class="iphone-screen">
       <div class="status-bar">
         <span class="status-time">9:41</span>
@@ -748,9 +829,126 @@
       </div>
     </div>
   </div>
+  <button class="download-btn" onclick="downloadFrame('frame4', 'GoodBabyLife_4_Tips.png', this)">📥 下載 可愛小建議</button>
 </div>
 
 </div><!-- end preview-row -->
+
+<script>
+// Target App Store size: iPhone 6.7" = 1290 x 2796
+const TARGET_W = 1290;
+const TARGET_H = 2796;
+
+async function downloadFrame(frameId, filename, btnEl) {
+  const frame = document.getElementById(frameId);
+  if (!frame) return;
+
+  // Show downloading state
+  const originalText = btnEl.textContent;
+  btnEl.textContent = '⏳ 產生中...';
+  btnEl.classList.add('downloading');
+
+  try {
+    // Capture the iPhone screen (inside the frame)
+    const screen = frame.querySelector('.iphone-screen');
+
+    // Store original scroll
+    const origScroll = screen.scrollTop;
+    screen.scrollTop = 0;
+
+    // Calculate scale: we want the final image to be 1290x2796
+    // The screen element is 362x816 (390-28 padding, 844-28 padding)
+    const screenW = screen.offsetWidth;
+    const screenH = screen.offsetHeight;
+    const scale = Math.max(TARGET_W / screenW, TARGET_H / screenH);
+
+    const canvas = await html2canvas(screen, {
+      scale: scale,
+      useCORS: true,
+      backgroundColor: '#FFF8FA',
+      width: screenW,
+      height: screenH,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: screenW,
+      windowHeight: screenH,
+    });
+
+    // Resize to exact App Store dimensions
+    const finalCanvas = document.createElement('canvas');
+    finalCanvas.width = TARGET_W;
+    finalCanvas.height = TARGET_H;
+    const ctx = finalCanvas.getContext('2d');
+
+    // Fill background
+    ctx.fillStyle = '#FFF8FA';
+    ctx.fillRect(0, 0, TARGET_W, TARGET_H);
+
+    // Draw centered
+    const drawW = TARGET_W;
+    const drawH = (canvas.height / canvas.width) * TARGET_W;
+    const offsetY = Math.max(0, (TARGET_H - drawH) / 2);
+    ctx.drawImage(canvas, 0, offsetY, drawW, drawH);
+
+    // Download
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = finalCanvas.toDataURL('image/png');
+    link.click();
+
+    // Restore
+    screen.scrollTop = origScroll;
+
+    btnEl.textContent = '✅ 下載完成！';
+    setTimeout(() => {
+      btnEl.textContent = originalText;
+      btnEl.classList.remove('downloading');
+    }, 2000);
+  } catch (err) {
+    console.error(err);
+    btnEl.textContent = '❌ 失敗，請重試';
+    setTimeout(() => {
+      btnEl.textContent = originalText;
+      btnEl.classList.remove('downloading');
+    }, 2000);
+  }
+}
+
+async function downloadAll() {
+  const frames = [
+    { id: 'frame1', name: 'GoodBabyLife_1_Dashboard.png' },
+    { id: 'frame2', name: 'GoodBabyLife_2_MilkTracker.png' },
+    { id: 'frame3', name: 'GoodBabyLife_3_FoodTracker.png' },
+    { id: 'frame4', name: 'GoodBabyLife_4_Tips.png' },
+  ];
+
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  progressBar.classList.add('show');
+  progressText.classList.add('show');
+
+  for (let i = 0; i < frames.length; i++) {
+    progressText.textContent = `正在產生第 ${i + 1} / ${frames.length} 張...`;
+    progressFill.style.width = `${((i) / frames.length) * 100}%`;
+
+    // Find the corresponding download button to reuse the function
+    const btn = document.querySelector(`#${frames[i].id}`).parentElement.querySelector('.download-btn');
+    await downloadFrame(frames[i].id, frames[i].name, btn);
+
+    // Small delay between downloads so browser doesn't block
+    await new Promise(r => setTimeout(r, 800));
+  }
+
+  progressFill.style.width = '100%';
+  progressText.textContent = '✅ 全部下載完成！';
+  setTimeout(() => {
+    progressBar.classList.remove('show');
+    progressText.classList.remove('show');
+    progressFill.style.width = '0%';
+  }, 3000);
+}
+</script>
 
 </body>
 </html>
