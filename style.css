@@ -1,0 +1,936 @@
+/* ============================================
+   Good Baby Life - Cute Pastel Theme
+   ============================================ */
+
+:root {
+  --pink: #FFB6C1;
+  --pink-light: #FFF0F3;
+  --pink-dark: #FF8FAB;
+  --lavender: #E6E6FA;
+  --lavender-light: #F5F3FF;
+  --mint: #B5EAD7;
+  --mint-light: #E8FFF5;
+  --peach: #FFDAB9;
+  --peach-light: #FFF5EB;
+  --baby-blue: #AED8F0;
+  --baby-blue-light: #EBF5FB;
+  --yellow: #FFEAA7;
+  --yellow-light: #FFFDE7;
+  --white: #FFFFFF;
+  --bg: #FFF8FA;
+  --text: #5A4A5A;
+  --text-light: #8A7A8A;
+  --shadow: rgba(255, 182, 193, 0.2);
+  --shadow-md: rgba(255, 182, 193, 0.3);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 80px;
+  overflow-x: hidden;
+}
+
+/* Background decorations */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--pink-light) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 80px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--lavender-light) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.header {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 50%, var(--baby-blue) 100%);
+  padding: 20px 16px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: var(--bg);
+  border-radius: 50% 50% 0 0;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.logo-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 4px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.header h1 {
+  font-size: 22px;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.date-display {
+  margin-top: 8px;
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: white;
+  font-weight: 500;
+}
+
+/* ============================================
+   Navigation Tabs
+   ============================================ */
+.tab-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  box-shadow: 0 -4px 20px var(--shadow);
+  z-index: 100;
+  border-radius: 20px 20px 0 0;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 11px;
+  color: var(--text-light);
+  font-family: inherit;
+}
+
+.tab-btn.active {
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  transform: translateY(-2px);
+}
+
+.tab-btn:active {
+  transform: scale(0.95);
+}
+
+.tab-icon {
+  font-size: 22px;
+}
+
+/* ============================================
+   Content Tabs
+   ============================================ */
+.tab-content {
+  display: none;
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Welcome Card
+   ============================================ */
+.welcome-card {
+  background: linear-gradient(135deg, var(--pink-light) 0%, var(--lavender-light) 100%);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 16px;
+  border: 2px solid rgba(255,182,193,0.3);
+}
+
+.welcome-emoji {
+  font-size: 48px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.welcome-card h2 {
+  font-size: 20px;
+  margin: 8px 0 4px;
+  color: var(--text);
+}
+
+.welcome-msg {
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* ============================================
+   Stats Grid
+   ============================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 15px var(--shadow);
+  transition: transform 0.2s;
+}
+
+.stat-card:active {
+  transform: scale(0.97);
+}
+
+.milk-stat { border-left: 4px solid var(--baby-blue); }
+.food-stat { border-left: 4px solid var(--mint); }
+.amount-stat { border-left: 4px solid var(--peach); }
+.time-stat { border-left: 4px solid var(--lavender); }
+
+.stat-icon {
+  font-size: 28px;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+/* ============================================
+   Section Card
+   ============================================ */
+.section-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px var(--shadow);
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px dashed var(--pink-light);
+}
+
+/* ============================================
+   Timeline
+   ============================================ */
+.timeline {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--pink-light);
+  animation: slideIn 0.3s ease;
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.timeline-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.timeline-icon.milk { background: var(--baby-blue-light); }
+.timeline-icon.food { background: var(--mint-light); }
+
+.timeline-info {
+  flex: 1;
+}
+
+.timeline-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.timeline-detail {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.timeline-time {
+  font-size: 12px;
+  color: var(--pink-dark);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ============================================
+   Tip Highlight (Dashboard)
+   ============================================ */
+.tip-highlight {
+  background: linear-gradient(135deg, var(--yellow-light) 0%, var(--peach-light) 100%);
+  border: 2px dashed var(--peach);
+  text-align: center;
+}
+
+.tip-highlight-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.tip-highlight-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ============================================
+   Forms
+   ============================================ */
+.record-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-input {
+  padding: 12px 16px;
+  border: 2px solid var(--pink-light);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color 0.3s;
+  font-family: inherit;
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--pink);
+  box-shadow: 0 0 0 4px rgba(255,182,193,0.2);
+}
+
+/* Radio Cards */
+.radio-group {
+  display: flex;
+  gap: 8px;
+}
+
+.radio-card {
+  flex: 1;
+  cursor: pointer;
+}
+
+.radio-card input { display: none; }
+
+.radio-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 2px solid var(--pink-light);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s;
+  font-size: 13px;
+}
+
+.radio-emoji {
+  font-size: 24px;
+}
+
+.radio-card input:checked + .radio-display {
+  border-color: var(--pink-dark);
+  background: var(--pink-light);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* Food Grid */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.food-card {
+  cursor: pointer;
+}
+
+.food-card input { display: none; }
+
+.food-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 2px solid var(--mint-light);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s;
+  font-size: 12px;
+}
+
+.food-emoji {
+  font-size: 28px;
+}
+
+.food-card input:checked + .food-display {
+  border-color: var(--mint);
+  background: var(--mint-light);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(181, 234, 215, 0.4);
+}
+
+/* Reaction Group */
+.reaction-group {
+  display: flex;
+  gap: 8px;
+}
+
+.reaction-card {
+  flex: 1;
+  cursor: pointer;
+}
+
+.reaction-card input { display: none; }
+
+.reaction-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px;
+  border: 2px solid var(--lavender);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.reaction-display::first-line {
+  font-size: 24px;
+}
+
+.reaction-card input:checked + .reaction-display {
+  border-color: var(--pink-dark);
+  background: var(--pink-light);
+  transform: scale(1.05);
+}
+
+/* Amount Input */
+.amount-input {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 2px solid var(--pink-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.amount-input input {
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 4px;
+  width: 100%;
+  color: var(--text);
+  background: var(--white);
+  font-family: inherit;
+}
+
+.amount-input input:focus {
+  outline: none;
+}
+
+.amount-btn {
+  background: var(--pink-light);
+  border: none;
+  padding: 10px 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--pink-dark);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.amount-btn:active {
+  background: var(--pink);
+  color: white;
+}
+
+/* Submit Button */
+.submit-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
+
+.milk-btn {
+  background: linear-gradient(135deg, var(--baby-blue) 0%, var(--lavender) 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(174, 216, 240, 0.5);
+}
+
+.food-btn {
+  background: linear-gradient(135deg, var(--mint) 0%, var(--baby-blue) 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(181, 234, 215, 0.5);
+}
+
+/* ============================================
+   History List
+   ============================================ */
+.history-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.history-item.milk-item {
+  background: var(--baby-blue-light);
+}
+
+.history-item.food-item {
+  background: var(--mint-light);
+}
+
+.history-icon {
+  font-size: 28px;
+}
+
+.history-info {
+  flex: 1;
+}
+
+.history-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.history-detail {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.history-time {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pink-dark);
+}
+
+.history-delete {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  padding: 4px;
+}
+
+.history-delete:hover,
+.history-delete:active {
+  opacity: 1;
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+.empty-state {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-light);
+}
+
+.empty-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+
+/* ============================================
+   Tips Section
+   ============================================ */
+.tips-intro {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+  margin-top: -8px;
+}
+
+.tips-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tip-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 4px 15px var(--shadow);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  animation: fadeIn 0.3s ease;
+}
+
+.tip-card:nth-child(1) { border-top: 3px solid var(--pink); }
+.tip-card:nth-child(2) { border-top: 3px solid var(--mint); }
+.tip-card:nth-child(3) { border-top: 3px solid var(--baby-blue); }
+.tip-card:nth-child(4) { border-top: 3px solid var(--peach); }
+.tip-card:nth-child(5) { border-top: 3px solid var(--lavender); }
+.tip-card:nth-child(6) { border-top: 3px solid var(--yellow); }
+.tip-card:nth-child(7) { border-top: 3px solid var(--pink); }
+.tip-card:nth-child(8) { border-top: 3px solid var(--mint); }
+.tip-card:nth-child(9) { border-top: 3px solid var(--baby-blue); }
+.tip-card:nth-child(10) { border-top: 3px solid var(--peach); }
+
+.tip-emoji {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.tip-content {
+  flex: 1;
+}
+
+.tip-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.tip-text {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.tip-category {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.tip-category.milk { background: var(--baby-blue-light); color: #5BA3C9; }
+.tip-category.food { background: var(--mint-light); color: #5DAA8C; }
+.tip-category.sleep { background: var(--lavender-light); color: #8B7BB8; }
+.tip-category.general { background: var(--peach-light); color: #D4956A; }
+
+/* ============================================
+   Toast Notification
+   ============================================ */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: var(--white);
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 200;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid var(--mint);
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-icon {
+  font-size: 20px;
+}
+
+.toast-msg {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ============================================
+   Delete Modal
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  transform: scale(0.9);
+  transition: transform 0.3s;
+}
+
+.modal-overlay.show .modal {
+  transform: scale(1);
+}
+
+.modal-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.modal h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.modal p {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.cancel-btn {
+  background: var(--pink-light);
+  color: var(--text);
+}
+
+.confirm-btn {
+  background: #FF6B6B;
+  color: white;
+}
+
+.modal-btn:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   Scrollbar
+   ============================================ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pink-light);
+  border-radius: 4px;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 360px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reaction-group {
+    flex-wrap: wrap;
+  }
+
+  .reaction-card {
+    flex: 0 0 calc(33.33% - 6px);
+  }
+}

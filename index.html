@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Good Baby Life - 寶寶生活日誌</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">👶</span>
+          <h1>Good Baby Life</h1>
+          <p class="subtitle">寶寶的美好每一天</p>
+        </div>
+        <div class="date-display" id="currentDate"></div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="dashboard" onclick="switchTab('dashboard')">
+        <span class="tab-icon">🏠</span>
+        <span>首頁</span>
+      </button>
+      <button class="tab-btn" data-tab="milk" onclick="switchTab('milk')">
+        <span class="tab-icon">🍼</span>
+        <span>喝奶</span>
+      </button>
+      <button class="tab-btn" data-tab="food" onclick="switchTab('food')">
+        <span class="tab-icon">🥣</span>
+        <span>副食品</span>
+      </button>
+      <button class="tab-btn" data-tab="tips" onclick="switchTab('tips')">
+        <span class="tab-icon">💡</span>
+        <span>小建議</span>
+      </button>
+    </nav>
+
+    <!-- Dashboard Tab -->
+    <main class="tab-content active" id="tab-dashboard">
+      <div class="welcome-card">
+        <div class="welcome-emoji">🌟</div>
+        <h2>今日寶寶日誌</h2>
+        <p class="welcome-msg" id="welcomeMsg">記錄寶寶美好的一天吧！</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card milk-stat">
+          <div class="stat-icon">🍼</div>
+          <div class="stat-info">
+            <span class="stat-value" id="todayMilkCount">0</span>
+            <span class="stat-label">今日喝奶次數</span>
+          </div>
+        </div>
+        <div class="stat-card food-stat">
+          <div class="stat-icon">🥣</div>
+          <div class="stat-info">
+            <span class="stat-value" id="todayFoodCount">0</span>
+            <span class="stat-label">今日副食品</span>
+          </div>
+        </div>
+        <div class="stat-card amount-stat">
+          <div class="stat-icon">📊</div>
+          <div class="stat-info">
+            <span class="stat-value" id="todayMilkTotal">0 ml</span>
+            <span class="stat-label">今日奶量</span>
+          </div>
+        </div>
+        <div class="stat-card time-stat">
+          <div class="stat-icon">⏰</div>
+          <div class="stat-info">
+            <span class="stat-value" id="lastFeedTime">--:--</span>
+            <span class="stat-label">上次餵食</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's Timeline -->
+      <div class="section-card">
+        <h3 class="section-title">📋 今日時間軸</h3>
+        <div id="timeline" class="timeline">
+          <div class="empty-state">
+            <span class="empty-icon">📝</span>
+            <p>還沒有紀錄喔，快來記錄寶寶的第一餐吧！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daily Tip on Dashboard -->
+      <div class="section-card tip-highlight">
+        <div class="tip-highlight-icon">💖</div>
+        <p class="tip-highlight-text" id="dailyTip">載入中...</p>
+      </div>
+    </main>
+
+    <!-- Milk Tab -->
+    <main class="tab-content" id="tab-milk">
+      <div class="section-card">
+        <h3 class="section-title">🍼 記錄喝奶</h3>
+        <form id="milkForm" class="record-form" onsubmit="return addMilkRecord(event)">
+          <div class="form-group">
+            <label>奶的種類</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="milkType" value="breast" checked>
+                <span class="radio-display">
+                  <span class="radio-emoji">🤱</span>
+                  <span>母乳</span>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="milkType" value="formula">
+                <span class="radio-display">
+                  <span class="radio-emoji">🍼</span>
+                  <span>配方奶</span>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="milkType" value="mixed">
+                <span class="radio-display">
+                  <span class="radio-emoji">🥛</span>
+                  <span>混合</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="milkAmount">奶量 (ml)</label>
+              <div class="amount-input">
+                <button type="button" class="amount-btn" onclick="adjustAmount('milkAmount', -10)">-</button>
+                <input type="number" id="milkAmount" min="0" max="500" value="120" step="10">
+                <button type="button" class="amount-btn" onclick="adjustAmount('milkAmount', 10)">+</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="milkTime">時間</label>
+              <input type="time" id="milkTime" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="milkDuration">喝奶時長 (分鐘)</label>
+            <div class="amount-input">
+              <button type="button" class="amount-btn" onclick="adjustAmount('milkDuration', -5)">-</button>
+              <input type="number" id="milkDuration" min="0" max="120" value="15" step="5">
+              <button type="button" class="amount-btn" onclick="adjustAmount('milkDuration', 5)">+</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="milkNote">備註</label>
+            <input type="text" id="milkNote" class="form-input" placeholder="寶寶喝得很開心 🥰">
+          </div>
+
+          <button type="submit" class="submit-btn milk-btn">
+            <span>🍼</span> 儲存紀錄
+          </button>
+        </form>
+      </div>
+
+      <!-- Milk History -->
+      <div class="section-card">
+        <h3 class="section-title">📜 喝奶紀錄</h3>
+        <div id="milkHistory" class="history-list">
+          <div class="empty-state">
+            <span class="empty-icon">🍼</span>
+            <p>還沒有喝奶紀錄喔！</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Food Tab -->
+    <main class="tab-content" id="tab-food">
+      <div class="section-card">
+        <h3 class="section-title">🥣 記錄副食品</h3>
+        <form id="foodForm" class="record-form" onsubmit="return addFoodRecord(event)">
+          <div class="form-group">
+            <label>食物種類</label>
+            <div class="food-grid">
+              <label class="food-card">
+                <input type="radio" name="foodType" value="rice_cereal" checked>
+                <span class="food-display">
+                  <span class="food-emoji">🍚</span>
+                  <span>米糊</span>
+                </span>
+              </label>
+              <label class="food-card">
+                <input type="radio" name="foodType" value="veggie">
+                <span class="food-display">
+                  <span class="food-emoji">🥦</span>
+                  <span>蔬菜泥</span>
+                </span>
+              </label>
+              <label class="food-card">
+                <input type="radio" name="foodType" value="fruit">
+                <span class="food-display">
+                  <span class="food-emoji">🍎</span>
+                  <span>水果泥</span>
+                </span>
+              </label>
+              <label class="food-card">
+                <input type="radio" name="foodType" value="protein">
+                <span class="food-display">
+                  <span class="food-emoji">🍗</span>
+                  <span>蛋白質</span>
+                </span>
+              </label>
+              <label class="food-card">
+                <input type="radio" name="foodType" value="porridge">
+                <span class="food-display">
+                  <span class="food-emoji">🥘</span>
+                  <span>粥品</span>
+                </span>
+              </label>
+              <label class="food-card">
+                <input type="radio" name="foodType" value="other">
+                <span class="food-display">
+                  <span class="food-emoji">🍽️</span>
+                  <span>其他</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="foodName">食物名稱</label>
+            <input type="text" id="foodName" class="form-input" placeholder="例如：南瓜泥、香蕉泥...">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="foodAmount">份量 (湯匙)</label>
+              <div class="amount-input">
+                <button type="button" class="amount-btn" onclick="adjustAmount('foodAmount', -1)">-</button>
+                <input type="number" id="foodAmount" min="0" max="50" value="3" step="1">
+                <button type="button" class="amount-btn" onclick="adjustAmount('foodAmount', 1)">+</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="foodTime">時間</label>
+              <input type="time" id="foodTime" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>寶寶反應</label>
+            <div class="reaction-group">
+              <label class="reaction-card">
+                <input type="radio" name="reaction" value="love" checked>
+                <span class="reaction-display">😍<br>超愛</span>
+              </label>
+              <label class="reaction-card">
+                <input type="radio" name="reaction" value="like">
+                <span class="reaction-display">😊<br>喜歡</span>
+              </label>
+              <label class="reaction-card">
+                <input type="radio" name="reaction" value="ok">
+                <span class="reaction-display">😐<br>普通</span>
+              </label>
+              <label class="reaction-card">
+                <input type="radio" name="reaction" value="dislike">
+                <span class="reaction-display">😣<br>不愛</span>
+              </label>
+              <label class="reaction-card">
+                <input type="radio" name="reaction" value="refuse">
+                <span class="reaction-display">🙅<br>拒吃</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="foodNote">備註</label>
+            <input type="text" id="foodNote" class="form-input" placeholder="過敏反應、特別狀況...">
+          </div>
+
+          <button type="submit" class="submit-btn food-btn">
+            <span>🥣</span> 儲存紀錄
+          </button>
+        </form>
+      </div>
+
+      <!-- Food History -->
+      <div class="section-card">
+        <h3 class="section-title">📜 副食品紀錄</h3>
+        <div id="foodHistory" class="history-list">
+          <div class="empty-state">
+            <span class="empty-icon">🥣</span>
+            <p>還沒有副食品紀錄喔！</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Tips Tab -->
+    <main class="tab-content" id="tab-tips">
+      <div class="section-card">
+        <h3 class="section-title">💡 可愛小建議</h3>
+        <p class="tips-intro">給爸爸媽媽的溫馨提醒 💕</p>
+      </div>
+
+      <div class="tips-container" id="tipsContainer"></div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+      <span class="toast-icon" id="toastIcon">✅</span>
+      <span class="toast-msg" id="toastMsg">儲存成功！</span>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal">
+        <div class="modal-icon">🗑️</div>
+        <h3>確定要刪除嗎？</h3>
+        <p>這筆紀錄刪除後就無法復原囉！</p>
+        <div class="modal-buttons">
+          <button class="modal-btn cancel-btn" onclick="closeDeleteModal()">取消</button>
+          <button class="modal-btn confirm-btn" id="confirmDeleteBtn">確定刪除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
