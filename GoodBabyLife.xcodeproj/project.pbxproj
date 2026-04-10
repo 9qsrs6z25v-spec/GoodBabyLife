@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4B5C6D70000000000200001 /* MilkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0001 /* MilkRecord.swift */; };
+		B4B5C6D70000000000200002 /* FoodRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0002 /* FoodRecord.swift */; };
+		B4B5C6D70000000000200003 /* BabyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0003 /* BabyTip.swift */; };
+		B4B5C6D70000000000200004 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0004 /* DataStore.swift */; };
+		B4B5C6D70000000000200005 /* BabyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0005 /* BabyTheme.swift */; };
+		B4B5C6D70000000000200006 /* StatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0006 /* StatCardView.swift */; };
+		B4B5C6D70000000000200007 /* TimelineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0007 /* TimelineItemView.swift */; };
+		B4B5C6D70000000000200008 /* TipCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0008 /* TipCardView.swift */; };
+		B4B5C6D70000000000200009 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0009 /* ContentView.swift */; };
+		B4B5C6D7000000000020000A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000A /* DashboardView.swift */; };
+		B4B5C6D7000000000020000B /* MilkTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000B /* MilkTrackerView.swift */; };
+		B4B5C6D7000000000020000C /* FoodTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000C /* FoodTrackerView.swift */; };
+		B4B5C6D7000000000020000D /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000D /* TipsView.swift */; };
+		B4B5C6D7000000000020000E /* GoodBabyLifeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000E /* GoodBabyLifeApp.swift */; };
+		B4B5C6D70000000000210001 /* MilkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0001 /* MilkRecord.swift */; };
+		B4B5C6D70000000000210002 /* FoodRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0002 /* FoodRecord.swift */; };
+		B4B5C6D70000000000210003 /* BabyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0003 /* BabyTip.swift */; };
+		B4B5C6D70000000000210004 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0004 /* DataStore.swift */; };
+		B4B5C6D70000000000210005 /* BabyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0005 /* BabyTheme.swift */; };
+		B4B5C6D70000000000210006 /* StatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0006 /* StatCardView.swift */; };
+		B4B5C6D70000000000210007 /* TimelineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0007 /* TimelineItemView.swift */; };
+		B4B5C6D70000000000210008 /* TipCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0008 /* TipCardView.swift */; };
+		B4B5C6D70000000000210009 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0009 /* ContentView.swift */; };
+		B4B5C6D7000000000021000A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000A /* DashboardView.swift */; };
+		B4B5C6D7000000000021000B /* MilkTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000B /* MilkTrackerView.swift */; };
+		B4B5C6D7000000000021000C /* FoodTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000C /* FoodTrackerView.swift */; };
+		B4B5C6D7000000000021000D /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000D /* TipsView.swift */; };
+		B4B5C6D7000000000021000F /* GoodBabyLifeWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000F /* GoodBabyLifeWatchApp.swift */; };
+		B4B5C6D70000000000210010 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0010 /* WatchContentView.swift */; };
+		B4B5C6D70000000000210011 /* WatchMilkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0011 /* WatchMilkView.swift */; };
+		B4B5C6D70000000000210012 /* WatchFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0012 /* WatchFoodView.swift */; };
+		B4B5C6D70000000000220001 /* MilkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0001 /* MilkRecord.swift */; };
+		B4B5C6D70000000000220002 /* FoodRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0002 /* FoodRecord.swift */; };
+		B4B5C6D70000000000220003 /* BabyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0003 /* BabyTip.swift */; };
+		B4B5C6D70000000000220004 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0004 /* DataStore.swift */; };
+		B4B5C6D70000000000220005 /* BabyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0005 /* BabyTheme.swift */; };
+		B4B5C6D70000000000220006 /* StatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0006 /* StatCardView.swift */; };
+		B4B5C6D70000000000220007 /* TimelineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0007 /* TimelineItemView.swift */; };
+		B4B5C6D70000000000220008 /* TipCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0008 /* TipCardView.swift */; };
+		B4B5C6D70000000000220009 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0009 /* ContentView.swift */; };
+		B4B5C6D7000000000022000A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000A /* DashboardView.swift */; };
+		B4B5C6D7000000000022000B /* MilkTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000B /* MilkTrackerView.swift */; };
+		B4B5C6D7000000000022000C /* FoodTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000C /* FoodTrackerView.swift */; };
+		B4B5C6D7000000000022000D /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F000D /* TipsView.swift */; };
+		B4B5C6D70000000000220013 /* GoodBabyLifeTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0013 /* GoodBabyLifeTVApp.swift */; };
+		B4B5C6D70000000000220014 /* TVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0014 /* TVContentView.swift */; };
+		B4B5C6D70000000000220015 /* TVTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0015 /* TVTipsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B4B5C6D700000000001C0007 /* GoodBabyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodBabyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B5C6D700000000001D0007 /* GoodBabyLife Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GoodBabyLife Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B5C6D700000000001E0007 /* GoodBabyLife TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GoodBabyLife TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B5C6D700000000001F0001 /* MilkRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilkRecord.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0002 /* FoodRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecord.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0003 /* BabyTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTip.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0004 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0005 /* BabyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTheme.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0006 /* StatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCardView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0007 /* TimelineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineItemView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0008 /* TipCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCardView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0009 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F000A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F000B /* MilkTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilkTrackerView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F000C /* FoodTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTrackerView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F000D /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F000E /* GoodBabyLifeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodBabyLifeApp.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F000F /* GoodBabyLifeWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodBabyLifeWatchApp.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0010 /* WatchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContentView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0011 /* WatchMilkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMilkView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0012 /* WatchFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFoodView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0013 /* GoodBabyLifeTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodBabyLifeTVApp.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0014 /* TVContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVContentView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0015 /* TVTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTipsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4B5C6D700000000001C0003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B5C6D700000000001D0003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B5C6D700000000001E0003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4B5C6D700000000001B0001 = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001B0002 /* GoodBabyLife */,
+				B4B5C6D700000000001B000B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0002 /* GoodBabyLife */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001B0003 /* Shared */,
+				B4B5C6D700000000001B0008 /* iOS */,
+				B4B5C6D700000000001B0009 /* watchOS */,
+				B4B5C6D700000000001B000A /* tvOS */,
+			);
+			path = GoodBabyLife;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0003 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001B0004 /* Models */,
+				B4B5C6D700000000001B0005 /* Views */,
+				B4B5C6D700000000001B0007 /* Theme */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001F0001 /* MilkRecord.swift */,
+				B4B5C6D700000000001F0002 /* FoodRecord.swift */,
+				B4B5C6D700000000001F0003 /* BabyTip.swift */,
+				B4B5C6D700000000001F0004 /* DataStore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0005 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001F0009 /* ContentView.swift */,
+				B4B5C6D700000000001F000A /* DashboardView.swift */,
+				B4B5C6D700000000001F000B /* MilkTrackerView.swift */,
+				B4B5C6D700000000001F000C /* FoodTrackerView.swift */,
+				B4B5C6D700000000001F000D /* TipsView.swift */,
+				B4B5C6D700000000001B0006 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0006 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001F0006 /* StatCardView.swift */,
+				B4B5C6D700000000001F0007 /* TimelineItemView.swift */,
+				B4B5C6D700000000001F0008 /* TipCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0007 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001F0005 /* BabyTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0008 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001F000E /* GoodBabyLifeApp.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B0009 /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001F000F /* GoodBabyLifeWatchApp.swift */,
+				B4B5C6D700000000001F0010 /* WatchContentView.swift */,
+				B4B5C6D700000000001F0011 /* WatchMilkView.swift */,
+				B4B5C6D700000000001F0012 /* WatchFoodView.swift */,
+			);
+			path = watchOS;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B000A /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001F0013 /* GoodBabyLifeTVApp.swift */,
+				B4B5C6D700000000001F0014 /* TVContentView.swift */,
+				B4B5C6D700000000001F0015 /* TVTipsView.swift */,
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		B4B5C6D700000000001B000B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C6D700000000001C0007 /* GoodBabyLife.app */,
+				B4B5C6D700000000001D0007 /* GoodBabyLife Watch.app */,
+				B4B5C6D700000000001E0007 /* GoodBabyLife TV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4B5C6D700000000001C0001 /* GoodBabyLife */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4B5C6D700000000001C0004 /* Build configuration list for PBXNativeTarget "GoodBabyLife" */;
+			buildPhases = (
+				B4B5C6D700000000001C0002 /* Sources */,
+				B4B5C6D700000000001C0003 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoodBabyLife;
+			productName = GoodBabyLife;
+			productReference = B4B5C6D700000000001C0007 /* GoodBabyLife.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4B5C6D700000000001D0001 /* GoodBabyLife Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4B5C6D700000000001D0004 /* Build configuration list for PBXNativeTarget "GoodBabyLife Watch" */;
+			buildPhases = (
+				B4B5C6D700000000001D0002 /* Sources */,
+				B4B5C6D700000000001D0003 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GoodBabyLife Watch";
+			productName = "GoodBabyLife Watch";
+			productReference = B4B5C6D700000000001D0007 /* GoodBabyLife Watch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4B5C6D700000000001E0001 /* GoodBabyLife TV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4B5C6D700000000001E0004 /* Build configuration list for PBXNativeTarget "GoodBabyLife TV" */;
+			buildPhases = (
+				B4B5C6D700000000001E0002 /* Sources */,
+				B4B5C6D700000000001E0003 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GoodBabyLife TV";
+			productName = "GoodBabyLife TV";
+			productReference = B4B5C6D700000000001E0007 /* GoodBabyLife TV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4B5C6D70000000000A00001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					B4B5C6D700000000001C0001 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					B4B5C6D700000000001D0001 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					B4B5C6D700000000001E0001 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = B4B5C6D70000000000A00002 /* Build configuration list for PBXProject "GoodBabyLife" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "zh-Hant";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				"zh-Hant",
+				Base,
+			);
+			mainGroup = B4B5C6D700000000001B0001;
+			productRefGroup = B4B5C6D700000000001B000B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4B5C6D700000000001C0001 /* GoodBabyLife */,
+				B4B5C6D700000000001D0001 /* GoodBabyLife Watch */,
+				B4B5C6D700000000001E0001 /* GoodBabyLife TV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4B5C6D700000000001C0002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B5C6D70000000000200001 /* MilkRecord.swift in Sources */,
+				B4B5C6D70000000000200002 /* FoodRecord.swift in Sources */,
+				B4B5C6D70000000000200003 /* BabyTip.swift in Sources */,
+				B4B5C6D70000000000200004 /* DataStore.swift in Sources */,
+				B4B5C6D70000000000200005 /* BabyTheme.swift in Sources */,
+				B4B5C6D70000000000200006 /* StatCardView.swift in Sources */,
+				B4B5C6D70000000000200007 /* TimelineItemView.swift in Sources */,
+				B4B5C6D70000000000200008 /* TipCardView.swift in Sources */,
+				B4B5C6D70000000000200009 /* ContentView.swift in Sources */,
+				B4B5C6D7000000000020000A /* DashboardView.swift in Sources */,
+				B4B5C6D7000000000020000B /* MilkTrackerView.swift in Sources */,
+				B4B5C6D7000000000020000C /* FoodTrackerView.swift in Sources */,
+				B4B5C6D7000000000020000D /* TipsView.swift in Sources */,
+				B4B5C6D7000000000020000E /* GoodBabyLifeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B5C6D700000000001D0002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B5C6D70000000000210001 /* MilkRecord.swift in Sources */,
+				B4B5C6D70000000000210002 /* FoodRecord.swift in Sources */,
+				B4B5C6D70000000000210003 /* BabyTip.swift in Sources */,
+				B4B5C6D70000000000210004 /* DataStore.swift in Sources */,
+				B4B5C6D70000000000210005 /* BabyTheme.swift in Sources */,
+				B4B5C6D70000000000210006 /* StatCardView.swift in Sources */,
+				B4B5C6D70000000000210007 /* TimelineItemView.swift in Sources */,
+				B4B5C6D70000000000210008 /* TipCardView.swift in Sources */,
+				B4B5C6D70000000000210009 /* ContentView.swift in Sources */,
+				B4B5C6D7000000000021000A /* DashboardView.swift in Sources */,
+				B4B5C6D7000000000021000B /* MilkTrackerView.swift in Sources */,
+				B4B5C6D7000000000021000C /* FoodTrackerView.swift in Sources */,
+				B4B5C6D7000000000021000D /* TipsView.swift in Sources */,
+				B4B5C6D7000000000021000F /* GoodBabyLifeWatchApp.swift in Sources */,
+				B4B5C6D70000000000210010 /* WatchContentView.swift in Sources */,
+				B4B5C6D70000000000210011 /* WatchMilkView.swift in Sources */,
+				B4B5C6D70000000000210012 /* WatchFoodView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B5C6D700000000001E0002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B5C6D70000000000220001 /* MilkRecord.swift in Sources */,
+				B4B5C6D70000000000220002 /* FoodRecord.swift in Sources */,
+				B4B5C6D70000000000220003 /* BabyTip.swift in Sources */,
+				B4B5C6D70000000000220004 /* DataStore.swift in Sources */,
+				B4B5C6D70000000000220005 /* BabyTheme.swift in Sources */,
+				B4B5C6D70000000000220006 /* StatCardView.swift in Sources */,
+				B4B5C6D70000000000220007 /* TimelineItemView.swift in Sources */,
+				B4B5C6D70000000000220008 /* TipCardView.swift in Sources */,
+				B4B5C6D70000000000220009 /* ContentView.swift in Sources */,
+				B4B5C6D7000000000022000A /* DashboardView.swift in Sources */,
+				B4B5C6D7000000000022000B /* MilkTrackerView.swift in Sources */,
+				B4B5C6D7000000000022000C /* FoodTrackerView.swift in Sources */,
+				B4B5C6D7000000000022000D /* TipsView.swift in Sources */,
+				B4B5C6D70000000000220013 /* GoodBabyLifeTVApp.swift in Sources */,
+				B4B5C6D70000000000220014 /* TVContentView.swift in Sources */,
+				B4B5C6D70000000000220015 /* TVTipsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B4B5C6D70000000000A00003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B4B5C6D70000000000A00004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4B5C6D700000000001C0005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B4B5C6D700000000001C0006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B4B5C6D700000000001D0005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.goodbabylife.app;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app.watchapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		B4B5C6D700000000001D0006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.goodbabylife.app;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app.watchapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		B4B5C6D700000000001E0005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.tv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		B4B5C6D700000000001E0006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.tv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4B5C6D70000000000A00002 /* Build configuration list for PBXProject "GoodBabyLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4B5C6D70000000000A00003 /* Debug */,
+				B4B5C6D70000000000A00004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4B5C6D700000000001C0004 /* Build configuration list for PBXNativeTarget "GoodBabyLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4B5C6D700000000001C0005 /* Debug */,
+				B4B5C6D700000000001C0006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4B5C6D700000000001D0004 /* Build configuration list for PBXNativeTarget "GoodBabyLife Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4B5C6D700000000001D0005 /* Debug */,
+				B4B5C6D700000000001D0006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4B5C6D700000000001E0004 /* Build configuration list for PBXNativeTarget "GoodBabyLife TV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4B5C6D700000000001E0005 /* Debug */,
+				B4B5C6D700000000001E0006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4B5C6D70000000000A00001 /* Project object */;
+}
