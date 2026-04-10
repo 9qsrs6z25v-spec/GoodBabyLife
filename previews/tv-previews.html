@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Baby Life - Apple TV 預覽圖</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;background:#f0f0f0;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:40px}
+h1{font-size:28px;color:#333}
+.info{max-width:700px;text-align:center;color:#666;font-size:14px;line-height:1.8;background:#fff;padding:20px 30px;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+.lbl{text-align:center;font-size:14px;color:#888;margin-bottom:10px;font-weight:600}
+
+/* TV Frame - 1920x1080 → scaled 960x540 */
+.tv-frame{width:960px;height:540px;background:#111;border-radius:12px;padding:8px;box-shadow:0 20px 60px rgba(0,0,0,0.3);position:relative}
+.tv-frame::after{content:"";position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:200px;height:6px;background:#333;border-radius:0 0 4px 4px}
+.tv-screen{width:100%;height:100%;border-radius:6px;overflow:hidden;background:#1a1a2e;color:#fff;position:relative}
+
+/* TV Layout */
+.tv-sidebar{position:absolute;left:0;top:0;bottom:0;width:220px;background:rgba(0,0,0,0.4);padding:20px 16px;display:flex;flex-direction:column;gap:4px}
+.tv-sidebar h2{font-size:16px;margin-bottom:12px;color:#fff}
+.tv-nav{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.7);cursor:default}
+.tv-nav.a{background:rgba(255,255,255,0.1);color:#fff}
+.tv-nav .ico{font-size:18px}
+.tv-main{margin-left:220px;height:100%;overflow:hidden;padding:20px 24px}
+
+/* TV Dashboard */
+.tv-welcome{text-align:center;margin-bottom:16px}
+.tv-welcome .em{font-size:44px}
+.tv-welcome h3{font-size:20px;color:#fff;margin-top:4px}
+.tv-welcome p{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px}
+
+.tv-stats{display:flex;gap:12px;margin-bottom:16px}
+.tv-stat{flex:1;background:rgba(255,255,255,0.06);border-radius:14px;padding:14px;text-align:center}
+.tv-stat .em{font-size:28px}
+.tv-stat .v{font-size:20px;font-weight:700;color:#fff;margin-top:4px}
+.tv-stat .l{font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px}
+.tv-stat.c1{border-top:3px solid #AED8F0}.tv-stat.c2{border-top:3px solid #B5EAD7}.tv-stat.c3{border-top:3px solid #FFDAB9}.tv-stat.c4{border-top:3px solid #E6E6FA}
+
+.tv-tip-box{background:linear-gradient(135deg,rgba(255,253,231,0.15),rgba(255,245,235,0.15));border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:center}
+.tv-tip-box .em{font-size:36px;flex-shrink:0}
+.tv-tip-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px}
+.tv-tip-text{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.5}
+
+/* TV Timeline */
+.tv-tl-title{font-size:18px;font-weight:700;margin-bottom:12px}
+.tv-tl{display:flex;flex-direction:column;gap:8px}
+.tv-tl-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,0.06);border-radius:12px}
+.tv-tl-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.tv-tl-icon.m{background:rgba(174,216,240,0.2)}.tv-tl-icon.f{background:rgba(181,234,215,0.2)}
+.tv-tl-info .t{font-size:13px;font-weight:600}.tv-tl-info .d{font-size:10px;color:rgba(255,255,255,0.5)}
+.tv-tl-time{margin-left:auto;font-size:13px;font-weight:600;color:#FF8FAB}
+
+/* TV Tips */
+.tv-tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tv-tc{background:rgba(255,255,255,0.06);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:flex-start}
+.tv-tc:nth-child(1){border-top:3px solid #FFB6C1}.tv-tc:nth-child(2){border-top:3px solid #B5EAD7}.tv-tc:nth-child(3){border-top:3px solid #AED8F0}.tv-tc:nth-child(4){border-top:3px solid #FFDAB9}
+.tv-tc .em{font-size:28px;flex-shrink:0}
+.tv-tc .tt{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.tv-tc .tx{font-size:10px;color:rgba(255,255,255,0.6);line-height:1.5}
+.tv-tc .badge{display:inline-block;margin-top:4px;padding:1px 8px;border-radius:20px;font-size:8px;font-weight:600}
+.badge.m{background:rgba(174,216,240,0.2);color:#AED8F0}.badge.f{background:rgba(181,234,215,0.2);color:#B5EAD7}.badge.g{background:rgba(255,218,185,0.2);color:#FFDAB9}
+
+/* DL */
+.dl{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:12px 24px;background:linear-gradient(135deg,#FFB6C1,#E6E6FA);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;width:100%;max-width:960px}
+.dl:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,182,193,0.4)}
+.dl.doing{background:#ccc;pointer-events:none}
+.da{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 36px;background:linear-gradient(135deg,#FF8FAB,#E6E6FA,#AED8F0);color:#fff;border:none;border-radius:18px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(255,182,193,0.35);transition:all 0.2s}
+.da:hover{transform:translateY(-3px)}
+.pb{width:100%;max-width:500px;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;display:none}.pb.show{display:block}
+.pf{height:100%;background:linear-gradient(90deg,#FFB6C1,#AED8F0);border-radius:4px;transition:width 0.3s;width:0%}
+.pt{font-size:13px;color:#888;display:none}.pt.show{display:block}
+</style>
+</head>
+<body>
+
+<h1>Good Baby Life - Apple TV 預覽圖</h1>
+<div class="info">Apple TV 規格：<strong>1920 x 1080</strong> 像素 (Full HD)<br>點擊下方按鈕即可下載 PNG。</div>
+<button class="da" onclick="downloadAll()">📥 一次下載全部 TV 預覽圖</button>
+<div class="pb" id="progressBar"><div class="pf" id="progressFill"></div></div>
+<div class="pt" id="progressText"></div>
+
+<!-- TV 1: Dashboard -->
+<div>
+<div class="lbl">TV 預覽 1 — 今日總覽</div>
+<div class="tv-frame"><div class="tv-screen" id="frame1">
+  <div class="tv-sidebar">
+    <h2>👶 Good Baby Life</h2>
+    <div class="tv-nav a"><span class="ico">🏠</span>今日總覽</div>
+    <div class="tv-nav"><span class="ico">💡</span>可愛小建議</div>
+    <div class="tv-nav"><span class="ico">📋</span>今日時間軸</div>
+  </div>
+  <div class="tv-main">
+    <div class="tv-welcome"><span class="em">🌟</span><h3>今日寶寶日誌</h3><p>寶寶今天吃得不錯呢，真棒！</p></div>
+    <div class="tv-stats">
+      <div class="tv-stat c1"><span class="em">🍼</span><div class="v">4</div><div class="l">喝奶次數</div></div>
+      <div class="tv-stat c2"><span class="em">🥣</span><div class="v">2</div><div class="l">副食品</div></div>
+      <div class="tv-stat c3"><span class="em">📊</span><div class="v">480 ml</div><div class="l">今日奶量</div></div>
+      <div class="tv-stat c4"><span class="em">⏰</span><div class="v">14:30</div><div class="l">上次餵食</div></div>
+    </div>
+    <div class="tv-tip-box">
+      <span class="em">💖</span>
+      <div><div class="tv-tip-title">🍼 喝奶小知識</div><div class="tv-tip-text">新生兒每天大約需要喝 8-12 次奶，每次約 60-120ml。隨著寶寶長大，每次奶量會增加，但次數會減少喔！</div></div>
+    </div>
+  </div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame1','TV_1_Dashboard.png',this)">📥 下載 今日總覽</button>
+</div>
+
+<!-- TV 2: Timeline -->
+<div style="margin-top:20px">
+<div class="lbl">TV 預覽 2 — 今日時間軸</div>
+<div class="tv-frame"><div class="tv-screen" id="frame2">
+  <div class="tv-sidebar">
+    <h2>👶 Good Baby Life</h2>
+    <div class="tv-nav"><span class="ico">🏠</span>今日總覽</div>
+    <div class="tv-nav"><span class="ico">💡</span>可愛小建議</div>
+    <div class="tv-nav a"><span class="ico">📋</span>今日時間軸</div>
+  </div>
+  <div class="tv-main">
+    <div class="tv-tl-title">📋 今日時間軸</div>
+    <div class="tv-tl">
+      <div class="tv-tl-item"><div class="tv-tl-icon m">🍼</div><div class="tv-tl-info"><div class="t">配方奶 120ml</div><div class="d">15分鐘</div></div><div class="tv-tl-time">14:30</div></div>
+      <div class="tv-tl-item"><div class="tv-tl-icon f">🥦</div><div class="tv-tl-info"><div class="t">花椰菜泥 3湯匙</div><div class="d">😍 超愛</div></div><div class="tv-tl-time">12:00</div></div>
+      <div class="tv-tl-item"><div class="tv-tl-icon m">🤱</div><div class="tv-tl-info"><div class="t">母乳 150ml</div><div class="d">20分鐘 · 寶寶很開心</div></div><div class="tv-tl-time">10:00</div></div>
+      <div class="tv-tl-item"><div class="tv-tl-icon f">🍎</div><div class="tv-tl-info"><div class="t">蘋果泥 2湯匙</div><div class="d">😊 喜歡</div></div><div class="tv-tl-time">08:30</div></div>
+      <div class="tv-tl-item"><div class="tv-tl-icon m">🍼</div><div class="tv-tl-info"><div class="t">配方奶 120ml</div><div class="d">15分鐘</div></div><div class="tv-tl-time">06:00</div></div>
+      <div class="tv-tl-item"><div class="tv-tl-icon m">🤱</div><div class="tv-tl-info"><div class="t">母乳 90ml</div><div class="d">10分鐘</div></div><div class="tv-tl-time">02:30</div></div>
+    </div>
+  </div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame2','TV_2_Timeline.png',this)">📥 下載 今日時間軸</button>
+</div>
+
+<!-- TV 3: Tips -->
+<div style="margin-top:20px">
+<div class="lbl">TV 預覽 3 — 可愛小建議</div>
+<div class="tv-frame"><div class="tv-screen" id="frame3">
+  <div class="tv-sidebar">
+    <h2>👶 Good Baby Life</h2>
+    <div class="tv-nav"><span class="ico">🏠</span>今日總覽</div>
+    <div class="tv-nav a"><span class="ico">💡</span>可愛小建議</div>
+    <div class="tv-nav"><span class="ico">📋</span>今日時間軸</div>
+  </div>
+  <div class="tv-main">
+    <div style="text-align:center;margin-bottom:14px"><div style="font-size:18px;font-weight:700">💡 可愛小建議</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">給爸爸媽媽的溫馨提醒 💕</div></div>
+    <div class="tv-tips-grid">
+      <div class="tv-tc"><span class="em">🍼</span><div><div class="tt">喝奶小知識</div><div class="tx">新生兒每天大約需要喝 8-12 次奶，每次約 60-120ml。隨著寶寶長大，每次奶量會增加！</div><span class="badge m">🍼 喝奶</span></div></div>
+      <div class="tv-tc"><span class="em">🥣</span><div><div class="tt">副食品開始時機</div><div class="tx">一般建議寶寶在 4-6 個月大時開始嘗試副食品。觀察寶寶是否能穩定坐著、對食物表現出興趣！</div><span class="badge f">🥣 副食品</span></div></div>
+      <div class="tv-tc"><span class="em">🌡️</span><div><div class="tt">奶的溫度很重要</div><div class="tx">配方奶的最佳溫度約 37-40°C，接近體溫最舒適。可以滴幾滴在手腕內側測試！</div><span class="badge m">🍼 喝奶</span></div></div>
+      <div class="tv-tc"><span class="em">🧡</span><div><div class="tt">爸媽也要照顧自己</div><div class="tx">帶寶寶雖然辛苦，但記得也要好好休息、吃飯。你們做得很棒！</div><span class="badge g">💫 一般</span></div></div>
+    </div>
+  </div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame3','TV_3_Tips.png',this)">📥 下載 可愛小建議</button>
+</div>
+
+<script>
+const TW=1920,TH=1080;
+async function dlFrame(id,fn,btn){
+  const el=document.getElementById(id);if(!el)return;
+  const ot=btn.textContent;btn.textContent='⏳ 產生中...';btn.classList.add('doing');
+  try{
+    const w=el.offsetWidth,h=el.offsetHeight,sc=Math.max(TW/w,TH/h);
+    const cv=await html2canvas(el,{scale:sc,useCORS:true,backgroundColor:'#1a1a2e',width:w,height:h,scrollX:0,scrollY:0});
+    const fc=document.createElement('canvas');fc.width=TW;fc.height=TH;
+    const cx=fc.getContext('2d');cx.fillStyle='#1a1a2e';cx.fillRect(0,0,TW,TH);
+    const dw=TW,dh=(cv.height/cv.width)*TW,oy=Math.max(0,(TH-dh)/2);
+    cx.drawImage(cv,0,oy,dw,dh);
+    const a=document.createElement('a');a.download=fn;a.href=fc.toDataURL('image/png');a.click();
+    btn.textContent='✅ 完成！';
+  }catch(e){console.error(e);btn.textContent='❌ 重試';}
+  setTimeout(()=>{btn.textContent=ot;btn.classList.remove('doing')},2000);
+}
+async function downloadAll(){
+  const fs=[{id:'frame1',n:'TV_1_Dashboard.png'},{id:'frame2',n:'TV_2_Timeline.png'},{id:'frame3',n:'TV_3_Tips.png'}];
+  const pb=document.getElementById('progressBar'),pf=document.getElementById('progressFill'),pt=document.getElementById('progressText');
+  pb.classList.add('show');pt.classList.add('show');
+  for(let i=0;i<fs.length;i++){pt.textContent=`第 ${i+1}/${fs.length} 張...`;pf.style.width=`${(i/fs.length)*100}%`;
+    const b=document.getElementById(fs[i].id).parentElement.querySelector('.dl');
+    await dlFrame(fs[i].id,fs[i].n,b);await new Promise(r=>setTimeout(r,800));}
+  pf.style.width='100%';pt.textContent='✅ 全部完成！';
+  setTimeout(()=>{pb.classList.remove('show');pt.classList.remove('show');pf.style.width='0%'},3000);
+}
+</script>
+</body>
+</html>

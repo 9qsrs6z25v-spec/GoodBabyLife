@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Baby Life - Apple Watch 預覽圖</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;background:#f0f0f0;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:40px}
+h1{font-size:28px;color:#333}
+.info{max-width:700px;text-align:center;color:#666;font-size:14px;line-height:1.8;background:#fff;padding:20px 30px;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+.row{display:flex;gap:40px;flex-wrap:wrap;justify-content:center}
+.lbl{text-align:center;font-size:14px;color:#888;margin-bottom:10px;font-weight:600}
+
+/* Watch frame - Ultra 2 (502x410 real → display 251x410 portrait, we'll use 205x250 scaled) */
+.watch-frame{width:220px;height:270px;background:#2a2a2a;border-radius:56px;padding:12px 14px;box-shadow:0 15px 40px rgba(0,0,0,0.3);position:relative}
+.watch-frame::before{content:"";position:absolute;right:-10px;top:60px;width:8px;height:40px;background:#3a3a3a;border-radius:0 4px 4px 0}
+.watch-frame::after{content:"";position:absolute;right:-12px;top:110px;width:10px;height:24px;background:#3a3a3a;border-radius:0 6px 6px 0}
+.watch-screen{width:100%;height:100%;border-radius:44px;overflow:hidden;overflow-y:auto;background:#000;color:#fff}
+.watch-screen::-webkit-scrollbar{display:none}
+
+/* Watch UI */
+.w-pad{padding:12px 10px}
+.w-title{font-size:13px;font-weight:700;text-align:center;margin-bottom:8px;color:#fff}
+.w-subtitle{font-size:9px;text-align:center;color:rgba(255,255,255,0.6);margin-bottom:8px}
+
+.w-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+.w-row-bg{background:rgba(255,255,255,0.08);border-radius:10px;padding:8px 10px;margin-bottom:6px}
+.w-label{font-size:9px;color:rgba(255,255,255,0.5)}
+.w-val{font-size:16px;font-weight:700;color:#fff}
+.w-val-sm{font-size:13px;font-weight:700}
+.w-icon{font-size:14px}
+
+.w-nav-item{display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(255,255,255,0.08);border-radius:12px;margin-bottom:6px}
+.w-nav-icon{font-size:18px}
+.w-nav-text{font-size:13px;color:#fff}
+
+.w-type-row{display:flex;gap:4px;margin-bottom:8px}
+.w-type{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px;border-radius:8px;background:rgba(255,255,255,0.06);font-size:7px;color:rgba(255,255,255,0.7)}
+.w-type.s{background:rgba(255,182,193,0.25)}
+.w-type .em{font-size:16px}
+
+.w-stepper{display:flex;align-items:center;margin-bottom:8px}
+.w-step-btn{width:30px;height:30px;border-radius:50%;background:rgba(255,182,193,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#FF8FAB}
+.w-step-val{flex:1;text-align:center;font-size:16px;font-weight:700;color:#fff}
+
+.w-save{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;padding:10px;border-radius:10px;font-size:12px;font-weight:600;color:#fff;margin-top:4px}
+.w-save.milk{background:#4A90D9}.w-save.food{background:#5DAA8C}
+
+.w-food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:8px}
+.w-food{display:flex;flex-direction:column;align-items:center;padding:5px 2px;border-radius:6px;background:rgba(255,255,255,0.06);font-size:6px;color:rgba(255,255,255,0.7)}
+.w-food.s{background:rgba(181,234,215,0.25)}
+.w-food .em{font-size:14px}
+
+.w-rx-row{display:flex;gap:3px;margin-bottom:6px}
+.w-rx{flex:1;display:flex;flex-direction:column;align-items:center;padding:4px 1px;border-radius:6px;background:rgba(255,255,255,0.06);font-size:6px;color:rgba(255,255,255,0.7)}
+.w-rx.s{background:rgba(255,182,193,0.25)}
+.w-rx .em{font-size:14px}
+
+.w-recent{border-top:1px solid rgba(255,255,255,0.1);margin-top:6px;padding-top:6px}
+.w-r-item{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:10px;color:rgba(255,255,255,0.8)}
+.w-r-time{margin-left:auto;font-size:9px;color:rgba(255,255,255,0.4)}
+
+/* Tip on watch */
+.w-tip{background:rgba(255,255,255,0.06);border-radius:10px;padding:8px 10px;margin-top:6px}
+.w-tip-title{font-size:10px;font-weight:700;color:#fff;margin-bottom:2px}
+.w-tip-text{font-size:8px;color:rgba(255,255,255,0.6);line-height:1.5}
+
+/* DL buttons */
+.dl{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 20px;background:linear-gradient(135deg,#FFB6C1,#E6E6FA);color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;width:100%;max-width:220px}
+.dl:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,182,193,0.4)}
+.dl.doing{background:#ccc;pointer-events:none}
+.da{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 36px;background:linear-gradient(135deg,#FF8FAB,#E6E6FA,#AED8F0);color:#fff;border:none;border-radius:18px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(255,182,193,0.35);transition:all 0.2s}
+.da:hover{transform:translateY(-3px)}
+.pb{width:100%;max-width:500px;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;display:none}.pb.show{display:block}
+.pf{height:100%;background:linear-gradient(90deg,#FFB6C1,#AED8F0);border-radius:4px;transition:width 0.3s;width:0%}
+.pt{font-size:13px;color:#888;display:none}.pt.show{display:block}
+</style>
+</head>
+<body>
+
+<h1>Good Baby Life - Apple Watch 預覽圖</h1>
+<div class="info">Apple Watch Ultra 2 規格：<strong>502 x 410</strong> 像素<br>點擊下方按鈕即可下載 PNG。</div>
+<button class="da" onclick="downloadAll()">📥 一次下載全部 Watch 預覽圖</button>
+<div class="pb" id="progressBar"><div class="pf" id="progressFill"></div></div>
+<div class="pt" id="progressText"></div>
+
+<div class="row">
+
+<!-- Watch 1: Home/Dashboard -->
+<div>
+<div class="lbl">Watch 1 — 首頁</div>
+<div class="watch-frame"><div class="watch-screen" id="frame1">
+  <div class="w-pad">
+    <div class="w-title">👶 Baby</div>
+    <div class="w-nav-item"><span class="w-nav-icon">🏠</span><span class="w-nav-text">今日總覽</span></div>
+    <div class="w-nav-item"><span class="w-nav-icon">🍼</span><span class="w-nav-text">記錄喝奶</span></div>
+    <div class="w-nav-item"><span class="w-nav-icon">🥣</span><span class="w-nav-text">記錄副食品</span></div>
+    <div class="w-tip">
+      <div class="w-tip-title">💡 今日小建議</div>
+      <div class="w-tip-text">🍼 喝奶小知識：新生兒每天需要喝 8-12 次奶，每次 60-120ml。</div>
+    </div>
+  </div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame1','Watch_1_Home.png',this)">📥 下載</button>
+</div>
+
+<!-- Watch 2: Dashboard Stats -->
+<div>
+<div class="lbl">Watch 2 — 今日總覽</div>
+<div class="watch-frame"><div class="watch-screen" id="frame2">
+  <div class="w-pad">
+    <div class="w-title">📊 今日</div>
+    <div class="w-row-bg">
+      <div class="w-row"><div><div class="w-label">🍼 喝奶</div><div class="w-val">4 次</div></div><div><div class="w-label">總量</div><div class="w-val-sm" style="color:#AED8F0">480 ml</div></div></div>
+    </div>
+    <div class="w-row-bg">
+      <div class="w-row"><div><div class="w-label">🥣 副食品</div><div class="w-val">2 次</div></div></div>
+    </div>
+    <div class="w-row-bg">
+      <div class="w-row"><div class="w-label">⏰ 上次餵食</div><div class="w-val-sm" style="color:#FF8FAB">14:30</div></div>
+    </div>
+    <div class="w-recent">
+      <div style="font-size:9px;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:4px">最近紀錄</div>
+      <div class="w-r-item"><span>🍼</span>配方奶 120ml<span class="w-r-time">14:30</span></div>
+      <div class="w-r-item"><span>🥦</span>花椰菜泥 3匙<span class="w-r-time">12:00</span></div>
+      <div class="w-r-item"><span>🤱</span>母乳 150ml<span class="w-r-time">10:00</span></div>
+    </div>
+  </div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame2','Watch_2_Dashboard.png',this)">📥 下載</button>
+</div>
+
+<!-- Watch 3: Milk Quick Add -->
+<div>
+<div class="lbl">Watch 3 — 記錄喝奶</div>
+<div class="watch-frame"><div class="watch-screen" id="frame3">
+  <div class="w-pad">
+    <div class="w-title">🍼 喝奶</div>
+    <div class="w-subtitle">奶的種類</div>
+    <div class="w-type-row">
+      <div class="w-type"><span class="em">🤱</span>母乳</div>
+      <div class="w-type s"><span class="em">🍼</span>配方奶</div>
+      <div class="w-type"><span class="em">🥛</span>混合</div>
+    </div>
+    <div class="w-subtitle">奶量</div>
+    <div class="w-stepper">
+      <div class="w-step-btn">−</div>
+      <div class="w-step-val">120 ml</div>
+      <div class="w-step-btn">+</div>
+    </div>
+    <div class="w-save milk">🍼 儲存</div>
+  </div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame3','Watch_3_Milk.png',this)">📥 下載</button>
+</div>
+
+<!-- Watch 4: Food Quick Add -->
+<div>
+<div class="lbl">Watch 4 — 記錄副食品</div>
+<div class="watch-frame"><div class="watch-screen" id="frame4">
+  <div class="w-pad">
+    <div class="w-title">🥣 副食品</div>
+    <div class="w-subtitle">食物種類</div>
+    <div class="w-food-grid">
+      <div class="w-food"><span class="em">🍚</span>米糊</div>
+      <div class="w-food s"><span class="em">🥦</span>蔬菜泥</div>
+      <div class="w-food"><span class="em">🍎</span>水果泥</div>
+      <div class="w-food"><span class="em">🍗</span>蛋白質</div>
+      <div class="w-food"><span class="em">🥘</span>粥品</div>
+      <div class="w-food"><span class="em">🍽️</span>其他</div>
+    </div>
+    <div class="w-subtitle">份量</div>
+    <div class="w-stepper">
+      <div class="w-step-btn" style="background:rgba(181,234,215,0.25);color:#5DAA8C">−</div>
+      <div class="w-step-val">3 匙</div>
+      <div class="w-step-btn" style="background:rgba(181,234,215,0.25);color:#5DAA8C">+</div>
+    </div>
+    <div class="w-subtitle">寶寶反應</div>
+    <div class="w-rx-row">
+      <div class="w-rx s"><span class="em">😍</span>超愛</div>
+      <div class="w-rx"><span class="em">😊</span>喜歡</div>
+      <div class="w-rx"><span class="em">😐</span>普通</div>
+      <div class="w-rx"><span class="em">😣</span>不愛</div>
+      <div class="w-rx"><span class="em">🙅</span>拒吃</div>
+    </div>
+    <div class="w-save food">🥣 儲存</div>
+  </div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame4','Watch_4_Food.png',this)">📥 下載</button>
+</div>
+
+</div>
+
+<script>
+const TW=502,TH=410;
+async function dlFrame(id,fn,btn){
+  const el=document.getElementById(id);if(!el)return;
+  const ot=btn.textContent;btn.textContent='⏳ 產生中...';btn.classList.add('doing');
+  try{
+    const s=el.scrollTop;el.scrollTop=0;
+    const w=el.offsetWidth,h=el.offsetHeight,sc=Math.max(TW/w,TH/h);
+    const cv=await html2canvas(el,{scale:sc,useCORS:true,backgroundColor:'#000',width:w,height:h,scrollX:0,scrollY:0});
+    const fc=document.createElement('canvas');fc.width=TW;fc.height=TH;
+    const cx=fc.getContext('2d');cx.fillStyle='#000';cx.fillRect(0,0,TW,TH);
+    const dh=TH,dw=(cv.width/cv.height)*TH,ox=Math.max(0,(TW-dw)/2);
+    cx.drawImage(cv,ox,0,dw,dh);
+    const a=document.createElement('a');a.download=fn;a.href=fc.toDataURL('image/png');a.click();
+    el.scrollTop=s;btn.textContent='✅ 完成！';
+  }catch(e){console.error(e);btn.textContent='❌ 重試';}
+  setTimeout(()=>{btn.textContent=ot;btn.classList.remove('doing')},2000);
+}
+async function downloadAll(){
+  const fs=[{id:'frame1',n:'Watch_1_Home.png'},{id:'frame2',n:'Watch_2_Dashboard.png'},{id:'frame3',n:'Watch_3_Milk.png'},{id:'frame4',n:'Watch_4_Food.png'}];
+  const pb=document.getElementById('progressBar'),pf=document.getElementById('progressFill'),pt=document.getElementById('progressText');
+  pb.classList.add('show');pt.classList.add('show');
+  for(let i=0;i<fs.length;i++){pt.textContent=`第 ${i+1}/${fs.length} 張...`;pf.style.width=`${(i/fs.length)*100}%`;
+    const b=document.getElementById(fs[i].id).parentElement.parentElement.querySelector('.dl');
+    await dlFrame(fs[i].id,fs[i].n,b);await new Promise(r=>setTimeout(r,600));}
+  pf.style.width='100%';pt.textContent='✅ 全部完成！';
+  setTimeout(()=>{pb.classList.remove('show');pt.classList.remove('show');pf.style.width='0%'},3000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Baby Life - iPad 預覽圖</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif; background:#f0f0f0; padding:40px 20px; display:flex; flex-direction:column; align-items:center; gap:40px; }
+h1 { font-size:28px; color:#333; }
+.instructions { max-width:700px; text-align:center; color:#666; font-size:14px; line-height:1.8; background:#fff; padding:20px 30px; border-radius:16px; box-shadow:0 2px 10px rgba(0,0,0,0.08); }
+.preview-label { text-align:center; font-size:14px; color:#888; margin-bottom:10px; font-weight:600; }
+.preview-row { display:flex; gap:40px; flex-wrap:wrap; justify-content:center; }
+
+/* iPad Frame - 12.9" (2048x2732 → scaled ~512x683) */
+.ipad-frame { width:580px; height:770px; background:#1a1a1a; border-radius:24px; padding:20px; box-shadow:0 20px 60px rgba(0,0,0,0.25); position:relative; }
+.ipad-screen { width:100%; height:100%; border-radius:8px; overflow:hidden; overflow-y:auto; background:#FFF8FA; }
+.ipad-screen::-webkit-scrollbar { display:none; }
+
+/* Status Bar */
+.sb { display:flex; justify-content:space-between; align-items:center; padding:10px 24px; font-size:13px; font-weight:600; color:#5A4A5A; }
+.sb-icons { display:flex; gap:6px; font-size:12px; }
+
+/* Header */
+.hdr { background:linear-gradient(135deg,#FFB6C1,#E6E6FA,#AED8F0); padding:20px 30px 45px; text-align:center; position:relative; }
+.hdr::after { content:""; position:absolute; bottom:-1px; left:0; right:0; height:20px; background:#FFF8FA; border-radius:50% 50% 0 0; }
+.hdr .logo { font-size:40px; }
+.hdr h2 { font-size:24px; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.1); }
+.hdr .sub { color:rgba(255,255,255,0.9); font-size:14px; margin-top:2px; }
+.hdr .badge { display:inline-block; margin-top:8px; background:rgba(255,255,255,0.3); padding:4px 18px; border-radius:20px; font-size:13px; color:#fff; }
+
+.cnt { padding:16px 24px 30px; }
+
+/* Welcome */
+.wc { background:linear-gradient(135deg,#FFF0F3,#F5F3FF); border-radius:20px; padding:24px; text-align:center; border:2px solid rgba(255,182,193,0.3); margin-bottom:16px; }
+.wc .em { font-size:44px; }
+.wc h3 { font-size:20px; color:#5A4A5A; margin:8px 0 4px; }
+.wc p { font-size:14px; color:#8A7A8A; }
+
+/* Stats - iPad uses 4 columns */
+.sg { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px; }
+.sc { background:#fff; border-radius:14px; padding:16px; display:flex; align-items:center; gap:12px; box-shadow:0 3px 12px rgba(255,182,193,0.15); }
+.sc.c1{border-left:3px solid #AED8F0}.sc.c2{border-left:3px solid #B5EAD7}.sc.c3{border-left:3px solid #FFDAB9}.sc.c4{border-left:3px solid #E6E6FA}
+.si { font-size:26px; }
+.sv { font-size:22px; font-weight:700; color:#5A4A5A; }
+.sl { font-size:11px; color:#8A7A8A; }
+
+/* Section Card */
+.sec { background:#fff; border-radius:14px; padding:18px; margin-bottom:16px; box-shadow:0 3px 12px rgba(255,182,193,0.15); }
+.st { font-size:17px; margin-bottom:14px; padding-bottom:8px; border-bottom:2px dashed #FFF0F3; color:#5A4A5A; }
+
+/* Timeline */
+.tl { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #FFF0F3; }
+.tl:last-child{border-bottom:none}
+.ti { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.ti.m{background:#EBF5FB}.ti.f{background:#E8FFF5}
+.tt { font-size:14px; font-weight:600; color:#5A4A5A; }
+.td { font-size:12px; color:#8A7A8A; }
+.tm { font-size:12px; font-weight:600; color:#FF8FAB; margin-left:auto; }
+
+/* Tip */
+.th { background:linear-gradient(135deg,#FFFDE7,#FFF5EB); border-radius:14px; padding:18px; text-align:center; border:2px dashed #FFDAB9; }
+.th .em{font-size:30px} .th p{font-size:13px;color:#5A4A5A;line-height:1.6;margin-top:6px}
+
+/* Bottom Nav */
+.bn { display:flex; justify-content:space-around; padding:10px 20px 14px; background:#fff; border-top:1px solid #FFF0F3; }
+.ni { display:flex; flex-direction:column; align-items:center; gap:2px; font-size:11px; color:#8A7A8A; }
+.ni.a { color:#FF8FAB; }
+.ni .nc { font-size:22px; }
+
+/* Form elements */
+.fl { font-size:14px; font-weight:600; color:#5A4A5A; margin-bottom:6px; }
+.rg { display:flex; gap:10px; }
+.rc { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:14px 8px; border:2px solid #FFF0F3; border-radius:10px; font-size:13px; color:#5A4A5A; }
+.rc.s { border-color:#FF8FAB; background:#FFF0F3; }
+.re { font-size:24px; }
+.ar { display:flex; align-items:center; background:#FFF8FA; border-radius:10px; padding:6px; }
+.ab { width:42px; height:42px; border-radius:10px; background:#FFF0F3; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; color:#FF8FAB; }
+.av { flex:1; text-align:center; font-size:20px; font-weight:700; color:#5A4A5A; }
+.sb-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:14px; border:none; border-radius:14px; font-size:16px; font-weight:600; color:#fff; }
+.sb-m { background:linear-gradient(135deg,#AED8F0,#E6E6FA); }
+.sb-f { background:linear-gradient(135deg,#B5EAD7,#AED8F0); }
+.fi { width:100%; padding:12px 16px; border:2px solid #FFF0F3; border-radius:10px; font-size:14px; color:#8A7A8A; background:#fff; }
+.fg { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.fc { display:flex; flex-direction:column; align-items:center; gap:3px; padding:12px 6px; border:2px solid #E8FFF5; border-radius:10px; font-size:12px; color:#5A4A5A; }
+.fc.s { border-color:#B5EAD7; background:#E8FFF5; }
+.fe { font-size:26px; }
+.rxg { display:flex; gap:8px; }
+.rxc { flex:1; display:flex; flex-direction:column; align-items:center; padding:10px 4px; border:2px solid #E6E6FA; border-radius:10px; font-size:10px; color:#5A4A5A; text-align:center; }
+.rxc.s { border-color:#FF8FAB; background:#FFF0F3; }
+.rxe { font-size:22px; margin-bottom:2px; }
+
+/* iPad split view - side by side for form screens */
+.split { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* History */
+.hi { display:flex; align-items:center; gap:10px; padding:10px; border-radius:10px; margin-bottom:6px; }
+.hi.mb{background:#EBF5FB}.hi.fb{background:#E8FFF5}
+.hii{font-size:26px}.ht{font-size:14px;font-weight:600;color:#5A4A5A}.hd{font-size:12px;color:#8A7A8A}.htm{font-size:13px;font-weight:600;color:#FF8FAB;margin-left:auto}
+
+/* Tip cards */
+.tc { background:#fff; border-radius:14px; padding:18px; display:flex; gap:14px; align-items:flex-start; box-shadow:0 3px 12px rgba(255,182,193,0.12); margin-bottom:10px; }
+.tc:nth-child(1){border-top:3px solid #FFB6C1}.tc:nth-child(2){border-top:3px solid #B5EAD7}.tc:nth-child(3){border-top:3px solid #AED8F0}.tc:nth-child(4){border-top:3px solid #FFDAB9}
+.te{font-size:32px;flex-shrink:0}.ttt{font-size:15px;font-weight:700;color:#5A4A5A;margin-bottom:4px}.tx{font-size:12px;color:#8A7A8A;line-height:1.6}
+.tb{display:inline-block;margin-top:6px;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:600}
+.tb.m{background:#EBF5FB;color:#5BA3C9}.tb.f{background:#E8FFF5;color:#5DAA8C}.tb.g{background:#FFF5EB;color:#D4956A}
+
+/* Download */
+.dl { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:14px; padding:12px 24px; background:linear-gradient(135deg,#FFB6C1,#E6E6FA); color:#fff; border:none; border-radius:14px; font-size:15px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.2s; width:100%; max-width:580px; }
+.dl:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,182,193,0.4)}
+.dl:active{transform:scale(0.97)}
+.dl.doing{background:#ccc;pointer-events:none}
+.da { display:flex; align-items:center; justify-content:center; gap:10px; padding:16px 40px; background:linear-gradient(135deg,#FF8FAB,#E6E6FA,#AED8F0); color:#fff; border:none; border-radius:18px; font-size:18px; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.2s; box-shadow:0 8px 30px rgba(255,182,193,0.35); }
+.da:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,182,193,0.5)}
+.pb{width:100%;max-width:500px;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;display:none}.pb.show{display:block}
+.pf{height:100%;background:linear-gradient(90deg,#FFB6C1,#AED8F0);border-radius:4px;transition:width 0.3s;width:0%}
+.pt{font-size:13px;color:#888;display:none}.pt.show{display:block}
+</style>
+</head>
+<body>
+
+<h1>Good Baby Life - iPad 預覽圖 (12.9")</h1>
+<div class="instructions">
+  App Store iPad 12.9" 規格：<strong>2048 x 2732</strong> 像素<br>
+  點擊下方按鈕即可下載 PNG 圖片。
+</div>
+<button class="da" onclick="downloadAll()">📥 一次下載全部 iPad 預覽圖</button>
+<div class="pb" id="progressBar"><div class="pf" id="progressFill"></div></div>
+<div class="pt" id="progressText"></div>
+
+<div class="preview-row">
+
+<!-- iPad Screen 1: Dashboard -->
+<div>
+<div class="preview-label">iPad 預覽 1 — 首頁儀表板</div>
+<div class="ipad-frame"><div class="ipad-screen" id="frame1">
+  <div class="sb"><span>9:41</span><div class="sb-icons">📶 📡 🔋</div></div>
+  <div class="hdr"><div class="logo">👶</div><h2>Good Baby Life</h2><div class="sub">寶寶的美好每一天</div><div class="badge">2026年4月10日 星期五</div></div>
+  <div class="cnt">
+    <div class="wc"><div class="em">🌟</div><h3>今日寶寶日誌</h3><p>寶寶今天吃得不錯呢，真棒！</p></div>
+    <div class="sg">
+      <div class="sc c1"><span class="si">🍼</span><div><div class="sv">4</div><div class="sl">今日喝奶次數</div></div></div>
+      <div class="sc c2"><span class="si">🥣</span><div><div class="sv">2</div><div class="sl">今日副食品</div></div></div>
+      <div class="sc c3"><span class="si">📊</span><div><div class="sv">480 ml</div><div class="sl">今日奶量</div></div></div>
+      <div class="sc c4"><span class="si">⏰</span><div><div class="sv">14:30</div><div class="sl">上次餵食</div></div></div>
+    </div>
+    <div class="split">
+      <div class="sec">
+        <div class="st">📋 今日時間軸</div>
+        <div class="tl"><div class="ti m">🍼</div><div><div class="tt">配方奶 120ml</div><div class="td">15分鐘</div></div><div class="tm">14:30</div></div>
+        <div class="tl"><div class="ti f">🥦</div><div><div class="tt">花椰菜泥 3湯匙</div><div class="td">😍 超愛</div></div><div class="tm">12:00</div></div>
+        <div class="tl"><div class="ti m">🤱</div><div><div class="tt">母乳 150ml</div><div class="td">20分鐘 · 寶寶很開心</div></div><div class="tm">10:00</div></div>
+        <div class="tl"><div class="ti f">🍎</div><div><div class="tt">蘋果泥 2湯匙</div><div class="td">😊 喜歡</div></div><div class="tm">08:30</div></div>
+        <div class="tl"><div class="ti m">🍼</div><div><div class="tt">配方奶 120ml</div><div class="td">15分鐘</div></div><div class="tm">06:00</div></div>
+      </div>
+      <div class="th"><div class="em">💖</div><p>🍼 <strong>喝奶小知識：</strong>新生兒每天大約需要喝 8-12 次奶，每次約 60-120ml。隨著寶寶長大，奶量會增加！</p></div>
+    </div>
+  </div>
+  <div class="bn"><div class="ni a"><span class="nc">🏠</span>首頁</div><div class="ni"><span class="nc">🍼</span>喝奶</div><div class="ni"><span class="nc">🥣</span>副食品</div><div class="ni"><span class="nc">💡</span>小建議</div></div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame1','iPad_1_Dashboard.png',this)">📥 下載 首頁儀表板</button>
+</div>
+
+<!-- iPad Screen 2: Milk + Food Side by Side -->
+<div>
+<div class="preview-label">iPad 預覽 2 — 喝奶 & 副食品</div>
+<div class="ipad-frame"><div class="ipad-screen" id="frame2">
+  <div class="sb"><span>9:41</span><div class="sb-icons">📶 📡 🔋</div></div>
+  <div style="padding:14px 20px 4px"><h2 style="font-size:24px;color:#5A4A5A;font-weight:700">🍼 喝奶 & 🥣 副食品</h2></div>
+  <div class="cnt" style="padding-top:8px">
+    <div class="split">
+      <!-- Milk Form -->
+      <div class="sec">
+        <div class="st">🍼 記錄喝奶</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><div class="fl">奶的種類</div><div class="rg"><div class="rc"><span class="re">🤱</span>母乳</div><div class="rc s"><span class="re">🍼</span>配方奶</div><div class="rc"><span class="re">🥛</span>混合</div></div></div>
+          <div><div class="fl">奶量 (ml)</div><div class="ar"><div class="ab">−</div><div class="av">120 ml</div><div class="ab">+</div></div></div>
+          <div><div class="fl">喝奶時長</div><div class="ar"><div class="ab">−</div><div class="av">15 分鐘</div><div class="ab">+</div></div></div>
+          <div><div class="fl">備註</div><div class="fi">寶寶喝得很開心 🥰</div></div>
+          <div class="sb-btn sb-m">🍼 儲存紀錄</div>
+        </div>
+      </div>
+      <!-- Food Form -->
+      <div class="sec">
+        <div class="st">🥣 記錄副食品</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><div class="fl">食物種類</div><div class="fg"><div class="fc"><span class="fe">🍚</span>米糊</div><div class="fc s"><span class="fe">🥦</span>蔬菜泥</div><div class="fc"><span class="fe">🍎</span>水果泥</div><div class="fc"><span class="fe">🍗</span>蛋白質</div><div class="fc"><span class="fe">🥘</span>粥品</div><div class="fc"><span class="fe">🍽️</span>其他</div></div></div>
+          <div><div class="fl">食物名稱</div><div class="fi">花椰菜泥</div></div>
+          <div><div class="fl">寶寶反應</div><div class="rxg"><div class="rxc s"><span class="rxe">😍</span>超愛</div><div class="rxc"><span class="rxe">😊</span>喜歡</div><div class="rxc"><span class="rxe">😐</span>普通</div><div class="rxc"><span class="rxe">😣</span>不愛</div><div class="rxc"><span class="rxe">🙅</span>拒吃</div></div></div>
+          <div class="sb-btn sb-f">🥣 儲存紀錄</div>
+        </div>
+      </div>
+    </div>
+    <!-- History -->
+    <div class="split" style="margin-top:16px">
+      <div class="sec"><div class="st">📜 今日喝奶紀錄</div>
+        <div class="hi mb"><span class="hii">🍼</span><div><div class="ht">配方奶 120ml</div><div class="hd">15分鐘</div></div><span class="htm">14:30</span></div>
+        <div class="hi mb"><span class="hii">🤱</span><div><div class="ht">母乳 150ml</div><div class="hd">20分鐘 · 寶寶很開心</div></div><span class="htm">10:00</span></div>
+      </div>
+      <div class="sec"><div class="st">📜 今日副食品紀錄</div>
+        <div class="hi fb"><span class="hii">🥦</span><div><div class="ht">花椰菜泥 3湯匙</div><div class="hd">😍 超愛</div></div><span class="htm">12:00</span></div>
+        <div class="hi fb"><span class="hii">🍎</span><div><div class="ht">蘋果泥 2湯匙</div><div class="hd">😊 喜歡</div></div><span class="htm">08:30</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="bn"><div class="ni"><span class="nc">🏠</span>首頁</div><div class="ni a"><span class="nc">🍼</span>喝奶</div><div class="ni"><span class="nc">🥣</span>副食品</div><div class="ni"><span class="nc">💡</span>小建議</div></div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame2','iPad_2_Tracker.png',this)">📥 下載 喝奶 & 副食品</button>
+</div>
+
+</div>
+
+<div class="preview-row">
+<!-- iPad Screen 3: Tips -->
+<div>
+<div class="preview-label">iPad 預覽 3 — 可愛小建議</div>
+<div class="ipad-frame"><div class="ipad-screen" id="frame3">
+  <div class="sb"><span>9:41</span><div class="sb-icons">📶 📡 🔋</div></div>
+  <div style="padding:14px 24px 4px"><h2 style="font-size:24px;color:#5A4A5A;font-weight:700">💡 可愛小建議</h2></div>
+  <div class="cnt" style="padding-top:8px">
+    <div class="sec" style="text-align:center"><div style="font-size:17px;font-weight:700;color:#5A4A5A">💡 可愛小建議</div><div style="font-size:14px;color:#8A7A8A;margin-top:4px">給爸爸媽媽的溫馨提醒 💕</div></div>
+    <div class="split">
+      <div>
+        <div class="tc"><span class="te">🍼</span><div><div class="ttt">喝奶小知識</div><div class="tx">新生兒每天大約需要喝 8-12 次奶，每次約 60-120ml。隨著寶寶長大，每次奶量會增加，但次數會減少喔！</div><span class="tb m">🍼 喝奶</span></div></div>
+        <div class="tc"><span class="te">🥣</span><div><div class="ttt">副食品開始時機</div><div class="tx">一般建議寶寶在 4-6 個月大時開始嘗試副食品。觀察寶寶是否能穩定坐著、對食物表現出興趣！</div><span class="tb f">🥣 副食品</span></div></div>
+        <div class="tc"><span class="te">🥕</span><div><div class="ttt">副食品循序漸進</div><div class="tx">每次只嘗試一種新食物，觀察 3-5 天確認沒有過敏反應再換下一種。從米糊開始！</div><span class="tb f">🥣 副食品</span></div></div>
+      </div>
+      <div>
+        <div class="tc"><span class="te">🌡️</span><div><div class="ttt">奶的溫度很重要</div><div class="tx">配方奶的最佳溫度約 37-40°C，接近體溫最舒適。可以滴幾滴在手腕內側測試！</div><span class="tb m">🍼 喝奶</span></div></div>
+        <div class="tc"><span class="te">🧡</span><div><div class="ttt">爸媽也要照顧自己</div><div class="tx">帶寶寶雖然辛苦，但記得也要好好休息、吃飯。只有爸媽身體健康、心情好，才能給寶寶最好的照顧喔！</div><span class="tb g">💫 一般</span></div></div>
+        <div class="tc"><span class="te">🥄</span><div><div class="ttt">湯匙餵食技巧</div><div class="tx">用小湯匙的前端輕輕放在寶寶下唇上，等寶寶自己張嘴再送入。不要硬塞喔！</div><span class="tb f">🥣 副食品</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bn"><div class="ni"><span class="nc">🏠</span>首頁</div><div class="ni"><span class="nc">🍼</span>喝奶</div><div class="ni"><span class="nc">🥣</span>副食品</div><div class="ni a"><span class="nc">💡</span>小建議</div></div>
+</div></div>
+<button class="dl" onclick="dlFrame('frame3','iPad_3_Tips.png',this)">📥 下載 可愛小建議</button>
+</div>
+</div>
+
+<script>
+const TW=2048,TH=2732;
+async function dlFrame(id,fn,btn){
+  const el=document.getElementById(id);if(!el)return;
+  const ot=btn.textContent;btn.textContent='⏳ 產生中...';btn.classList.add('doing');
+  try{
+    const s=el.scrollTop;el.scrollTop=0;
+    const w=el.offsetWidth,h=el.offsetHeight,sc=Math.max(TW/w,TH/h);
+    const cv=await html2canvas(el,{scale:sc,useCORS:true,backgroundColor:'#FFF8FA',width:w,height:h,scrollX:0,scrollY:0});
+    const fc=document.createElement('canvas');fc.width=TW;fc.height=TH;
+    const cx=fc.getContext('2d');cx.fillStyle='#FFF8FA';cx.fillRect(0,0,TW,TH);
+    const dw=TW,dh=(cv.height/cv.width)*TW,oy=Math.max(0,(TH-dh)/2);
+    cx.drawImage(cv,0,oy,dw,dh);
+    const a=document.createElement('a');a.download=fn;a.href=fc.toDataURL('image/png');a.click();
+    el.scrollTop=s;btn.textContent='✅ 下載完成！';
+  }catch(e){console.error(e);btn.textContent='❌ 失敗，請重試';}
+  setTimeout(()=>{btn.textContent=ot;btn.classList.remove('doing')},2000);
+}
+async function downloadAll(){
+  const fs=[{id:'frame1',n:'iPad_1_Dashboard.png'},{id:'frame2',n:'iPad_2_Tracker.png'},{id:'frame3',n:'iPad_3_Tips.png'}];
+  const pb=document.getElementById('progressBar'),pf=document.getElementById('progressFill'),pt=document.getElementById('progressText');
+  pb.classList.add('show');pt.classList.add('show');
+  for(let i=0;i<fs.length;i++){pt.textContent=`正在產生第 ${i+1}/${fs.length} 張...`;pf.style.width=`${(i/fs.length)*100}%`;
+    const b=document.getElementById(fs[i].id).parentElement.parentElement.querySelector('.dl');
+    await dlFrame(fs[i].id,fs[i].n,b);await new Promise(r=>setTimeout(r,800));}
+  pf.style.width='100%';pt.textContent='✅ 全部下載完成！';
+  setTimeout(()=>{pb.classList.remove('show');pt.classList.remove('show');pf.style.width='0%'},3000);
+}
+</script>
+</body>
+</html>
