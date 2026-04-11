@@ -13,7 +13,7 @@ h1{font-size:28px;color:#333}
 .row{display:flex;gap:40px;flex-wrap:wrap;justify-content:center}
 .lbl{text-align:center;font-size:14px;color:#888;margin-bottom:10px;font-weight:600}
 
-/* Watch frame - Ultra 2 (502x410 real → display 251x410 portrait, we'll use 205x250 scaled) */
+/* Watch frame - Ultra 2 (410x502 portrait) */
 .watch-frame{width:220px;height:270px;background:#2a2a2a;border-radius:56px;padding:12px 14px;box-shadow:0 15px 40px rgba(0,0,0,0.3);position:relative}
 .watch-frame::before{content:"";position:absolute;right:-10px;top:60px;width:8px;height:40px;background:#3a3a3a;border-radius:0 4px 4px 0}
 .watch-frame::after{content:"";position:absolute;right:-12px;top:110px;width:10px;height:24px;background:#3a3a3a;border-radius:0 6px 6px 0}
@@ -81,7 +81,7 @@ h1{font-size:28px;color:#333}
 <body>
 
 <h1>Good Baby Life - Apple Watch 預覽圖</h1>
-<div class="info">Apple Watch Ultra 2 規格：<strong>502 x 410</strong> 像素<br>點擊下方按鈕即可下載 PNG。</div>
+<div class="info">Apple Watch Ultra 2 規格：<strong>410 x 502</strong> 像素<br>點擊下方按鈕即可下載 PNG。</div>
 <button class="da" onclick="downloadAll()">📥 一次下載全部 Watch 預覽圖</button>
 <div class="pb" id="progressBar"><div class="pf" id="progressFill"></div></div>
 <div class="pt" id="progressText"></div>
@@ -194,7 +194,7 @@ h1{font-size:28px;color:#333}
 </div>
 
 <script>
-const TW=502,TH=410;
+const TW=410,TH=502;
 async function dlFrame(id,fn,btn){
   const el=document.getElementById(id);if(!el)return;
   const ot=btn.textContent;btn.textContent='⏳ 產生中...';btn.classList.add('doing');
@@ -204,8 +204,7 @@ async function dlFrame(id,fn,btn){
     const cv=await html2canvas(el,{scale:sc,useCORS:true,backgroundColor:'#000',width:w,height:h,scrollX:0,scrollY:0});
     const fc=document.createElement('canvas');fc.width=TW;fc.height=TH;
     const cx=fc.getContext('2d');cx.fillStyle='#000';cx.fillRect(0,0,TW,TH);
-    const dh=TH,dw=(cv.width/cv.height)*TH,ox=Math.max(0,(TW-dw)/2);
-    cx.drawImage(cv,ox,0,dw,dh);
+    cx.drawImage(cv,0,0,cv.width,cv.height,0,0,TW,TH);
     const a=document.createElement('a');a.download=fn;a.href=fc.toDataURL('image/png');a.click();
     el.scrollTop=s;btn.textContent='✅ 完成！';
   }catch(e){console.error(e);btn.textContent='❌ 重試';}
