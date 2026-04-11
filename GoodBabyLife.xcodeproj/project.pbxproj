@@ -54,6 +54,9 @@
 		B4B5C6D70000000000220013 /* GoodBabyLifeTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0013 /* GoodBabyLifeTVApp.swift */; };
 		B4B5C6D70000000000220014 /* TVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0014 /* TVContentView.swift */; };
 		B4B5C6D70000000000220015 /* TVTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0015 /* TVTipsView.swift */; };
+		B4B5C6D70000000000240001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0020 /* Assets.xcassets */; };
+		B4B5C6D70000000000240002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0020 /* Assets.xcassets */; };
+		B4B5C6D70000000000240003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4B5C6D700000000001F0020 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +84,7 @@
 		B4B5C6D700000000001F0013 /* GoodBabyLifeTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodBabyLifeTVApp.swift; sourceTree = "<group>"; };
 		B4B5C6D700000000001F0014 /* TVContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVContentView.swift; sourceTree = "<group>"; };
 		B4B5C6D700000000001F0015 /* TVTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTipsView.swift; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 		B4B5C6D700000000001B0002 /* GoodBabyLife */ = {
 			isa = PBXGroup;
 			children = (
+				B4B5C6D700000000001F0020 /* Assets.xcassets */,
 				B4B5C6D700000000001B0003 /* Shared */,
 				B4B5C6D700000000001B0008 /* iOS */,
 				B4B5C6D700000000001B0009 /* watchOS */,
@@ -220,6 +225,33 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXResourcesBuildPhase section */
+		B4B5C6D700000000001C0008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B5C6D70000000000240001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B5C6D700000000001D0008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B5C6D70000000000240002 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B5C6D700000000001E0008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B5C6D70000000000240003 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		B4B5C6D700000000001C0001 /* GoodBabyLife */ = {
 			isa = PBXNativeTarget;
@@ -227,6 +259,7 @@
 			buildPhases = (
 				B4B5C6D700000000001C0002 /* Sources */,
 				B4B5C6D700000000001C0003 /* Frameworks */,
+				B4B5C6D700000000001C0008 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -243,6 +276,7 @@
 			buildPhases = (
 				B4B5C6D700000000001D0002 /* Sources */,
 				B4B5C6D700000000001D0003 /* Frameworks */,
+				B4B5C6D700000000001D0008 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +293,7 @@
 			buildPhases = (
 				B4B5C6D700000000001E0002 /* Sources */,
 				B4B5C6D700000000001E0003 /* Frameworks */,
+				B4B5C6D700000000001E0008 /* Resources */,
 			);
 			buildRules = (
 			);
