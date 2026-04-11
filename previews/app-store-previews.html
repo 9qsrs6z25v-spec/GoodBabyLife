@@ -1133,10 +1133,14 @@ async function downloadDevice(frameId, filename, btnEl, device) {
 
     const screenW = screen.offsetWidth;
     const screenH = screen.offsetHeight;
-    const scale = Math.max(targetW / screenW, targetH / screenH);
+
+    // Use high scale for crisp rendering
+    const scaleX = targetW / screenW;
+    const scaleY = targetH / screenH;
+    const captureScale = Math.max(scaleX, scaleY, 2);
 
     const canvas = await html2canvas(screen, {
-      scale: scale,
+      scale: captureScale,
       useCORS: true,
       backgroundColor: bg,
       width: screenW,
@@ -1146,18 +1150,23 @@ async function downloadDevice(frameId, filename, btnEl, device) {
       windowHeight: screenH,
     });
 
+    // Create final canvas at EXACT target dimensions
     const finalCanvas = document.createElement('canvas');
     finalCanvas.width = targetW;
     finalCanvas.height = targetH;
     const ctx = finalCanvas.getContext('2d');
+
+    // Fill background
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, targetW, targetH);
 
-    const drawW = targetW;
-    const drawH = (canvas.height / canvas.width) * targetW;
-    const offsetY = Math.max(0, (targetH - drawH) / 2);
-    ctx.drawImage(canvas, 0, offsetY, drawW, drawH);
+    // Stretch the captured content to exactly fill target size
+    ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, targetW, targetH);
 
+    // Verify dimensions in console
+    console.log(`[${device}] target: ${targetW}x${targetH}, final: ${finalCanvas.width}x${finalCanvas.height}`);
+
+    // Download
     const link = document.createElement('a');
     link.download = filename;
     link.href = finalCanvas.toDataURL('image/png');
