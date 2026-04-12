@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TimelineItemView: View {
-    let entry: DataStore.TimelineEntry
+    let entry: TimelineEntry
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
