@@ -65,7 +65,10 @@ struct FoodTrackerView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("食物名稱").font(.subheadline).fontWeight(.semibold)
-                TextField("例如：南瓜泥、香蕉泥...", text: $foodName).textFieldStyle(.roundedBorder)
+                TextField("例如：南瓜泥、香蕉泥...", text: $foodName)
+                    #if !os(watchOS)
+                    .textFieldStyle(.roundedBorder)
+                    #endif
             }
 
             VStack(alignment: .leading, spacing: 8) {
@@ -100,7 +103,10 @@ struct FoodTrackerView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("備註").font(.subheadline).fontWeight(.semibold)
-                TextField("過敏反應、特別狀況...", text: $note).textFieldStyle(.roundedBorder)
+                TextField("過敏反應、特別狀況...", text: $note)
+                    #if !os(watchOS)
+                    .textFieldStyle(.roundedBorder)
+                    #endif
             }
 
             Button(action: saveFoodRecord) {

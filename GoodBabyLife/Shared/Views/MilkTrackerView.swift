@@ -78,7 +78,10 @@ struct MilkTrackerView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("備註").font(.subheadline).fontWeight(.semibold)
-                TextField("寶寶喝得很開心 🥰", text: $note).textFieldStyle(.roundedBorder)
+                TextField("寶寶喝得很開心 🥰", text: $note)
+                    #if !os(watchOS)
+                    .textFieldStyle(.roundedBorder)
+                    #endif
             }
 
             Button(action: saveMilkRecord) {
