@@ -1,21 +1,20 @@
 import SwiftUI
+import SwiftData
 
 struct DashboardView: View {
-    @Environment(DataStore.self) private var store
+    @Query(sort: \MilkRecord.date, order: .reverse) private var allMilk: [MilkRecord]
+    @Query(sort: \FoodRecord.date, order: .reverse) private var allFood: [FoodRecord]
+
+    private var todayMilk: [MilkRecord] { allMilk.today }
+    private var todayFood: [FoodRecord] { allFood.today }
+    private var timeline: [TimelineEntry] { buildTimeline(milk: allMilk, food: allFood) }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                // Welcome Card
                 welcomeCard
-
-                // Stats Grid
                 statsGrid
-
-                // Timeline
                 timelineSection
-
-                // Daily Tip
                 dailyTipCard
             }
             .padding(.horizontal, 16)
@@ -29,20 +28,16 @@ struct DashboardView: View {
         #endif
     }
 
-    // MARK: - Welcome
-
     private var welcomeCard: some View {
         VStack(spacing: 8) {
             Text("🌟")
                 .font(.system(size: 48))
                 .pulseEffect()
-
             Text("今日寶寶日誌")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundStyle(Color.babyText)
-
-            Text(store.welcomeMessage)
+            Text(welcomeMessage(milkCount: todayMilk.count, foodCount: todayFood.count))
                 .font(.subheadline)
                 .foregroundStyle(Color.babyTextLight)
         }
@@ -56,32 +51,26 @@ struct DashboardView: View {
         )
     }
 
-    // MARK: - Stats
-
     private var statsGrid: some View {
         LazyVGrid(columns: [
             GridItem(.flexible(), spacing: 12),
             GridItem(.flexible(), spacing: 12),
         ], spacing: 12) {
-            StatCardView(icon: "🍼", value: "\(store.todayMilkCount)", label: "今日喝奶次數", accentColor: .babyBlue)
-            StatCardView(icon: "🥣", value: "\(store.todayFoodCount)", label: "今日副食品", accentColor: .babyMint)
-            StatCardView(icon: "📊", value: "\(store.todayTotalML) ml", label: "今日奶量", accentColor: .babyPeach)
-            StatCardView(icon: "⏰", value: store.lastFeedTime, label: "上次餵食", accentColor: .babyLavender)
+            StatCardView(icon: "🍼", value: "\(todayMilk.count)", label: "今日喝奶次數", accentColor: .babyBlue)
+            StatCardView(icon: "🥣", value: "\(todayFood.count)", label: "今日副食品", accentColor: .babyMint)
+            StatCardView(icon: "📊", value: "\(allMilk.todayTotalML) ml", label: "今日奶量", accentColor: .babyPeach)
+            StatCardView(icon: "⏰", value: lastFeedTime(milk: allMilk, food: allFood), label: "上次餵食", accentColor: .babyLavender)
         }
     }
-
-    // MARK: - Timeline
 
     private var timelineSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("📋 今日時間軸")
                 .font(.headline)
 
-            if store.todayTimeline.isEmpty {
+            if timeline.isEmpty {
                 VStack(spacing: 12) {
-                    Text("📝")
-                        .font(.system(size: 48))
-                        .opacity(0.5)
+                    Text("📝").font(.system(size: 48)).opacity(0.5)
                     Text("還沒有紀錄喔，快來記錄寶寶的第一餐吧！")
                         .font(.subheadline)
                         .foregroundStyle(Color.babyTextLight)
@@ -90,11 +79,10 @@ struct DashboardView: View {
                 .padding(.vertical, 32)
             } else {
                 LazyVStack(spacing: 0) {
-                    ForEach(store.todayTimeline) { entry in
+                    ForEach(timeline) { entry in
                         TimelineItemView(entry: entry)
-                        if entry.id != store.todayTimeline.last?.id {
-                            Divider()
-                                .background(Color.babyPinkLight)
+                        if entry.id != timeline.last?.id {
+                            Divider().background(Color.babyPinkLight)
                         }
                     }
                 }
@@ -103,16 +91,12 @@ struct DashboardView: View {
         .babyCard()
     }
 
-    // MARK: - Daily Tip
-
     private var dailyTipCard: some View {
         let tip = BabyTip.dailyTip
         return VStack(spacing: 8) {
-            Text("💖")
-                .font(.system(size: 32))
+            Text("💖").font(.system(size: 32))
             Text("\(tip.emoji) \(tip.title)")
-                .font(.subheadline)
-                .fontWeight(.semibold)
+                .font(.subheadline).fontWeight(.semibold)
             Text(tip.text)
                 .font(.caption)
                 .foregroundStyle(Color.babyText)
@@ -128,11 +112,4 @@ struct DashboardView: View {
                 .stroke(Color.babyPeach, style: StrokeStyle(lineWidth: 2, dash: [8, 4]))
         )
     }
-}
-
-#Preview {
-    NavigationStack {
-        DashboardView()
-    }
-    .environment(DataStore())
 }

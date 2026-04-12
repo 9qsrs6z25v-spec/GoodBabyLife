@@ -85,6 +85,9 @@
 		B4B5C6D700000000001F0014 /* TVContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVContentView.swift; sourceTree = "<group>"; };
 		B4B5C6D700000000001F0015 /* TVTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTipsView.swift; sourceTree = "<group>"; };
 		B4B5C6D700000000001F0020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0030 /* GoodBabyLife.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoodBabyLife.entitlements; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0031 /* GoodBabyLifeWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoodBabyLifeWatch.entitlements; sourceTree = "<group>"; };
+		B4B5C6D700000000001F0032 /* GoodBabyLifeTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoodBabyLifeTV.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,7 @@
 		B4B5C6D700000000001B0008 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B4B5C6D700000000001F0030 /* GoodBabyLife.entitlements */,
 				B4B5C6D700000000001F000E /* GoodBabyLifeApp.swift */,
 			);
 			path = iOS;
@@ -195,6 +199,7 @@
 		B4B5C6D700000000001B0009 /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
+				B4B5C6D700000000001F0031 /* GoodBabyLifeWatch.entitlements */,
 				B4B5C6D700000000001F000F /* GoodBabyLifeWatchApp.swift */,
 				B4B5C6D700000000001F0010 /* WatchContentView.swift */,
 				B4B5C6D700000000001F0011 /* WatchMilkView.swift */,
@@ -206,6 +211,7 @@
 		B4B5C6D700000000001B000A /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
+				B4B5C6D700000000001F0032 /* GoodBabyLifeTV.entitlements */,
 				B4B5C6D700000000001F0013 /* GoodBabyLifeTVApp.swift */,
 				B4B5C6D700000000001F0014 /* TVContentView.swift */,
 				B4B5C6D700000000001F0015 /* TVTipsView.swift */,
@@ -545,6 +551,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
+				CODE_SIGN_ENTITLEMENTS = GoodBabyLife/iOS/GoodBabyLife.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -571,6 +578,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
+				CODE_SIGN_ENTITLEMENTS = GoodBabyLife/iOS/GoodBabyLife.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -592,6 +600,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.goodbabylife.app;
 				MARKETING_VERSION = 1.0;
+				CODE_SIGN_ENTITLEMENTS = GoodBabyLife/watchOS/GoodBabyLifeWatch.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app.watchapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -612,6 +621,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Good Baby Life";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.goodbabylife.app;
 				MARKETING_VERSION = 1.0;
+				CODE_SIGN_ENTITLEMENTS = GoodBabyLife/watchOS/GoodBabyLifeWatch.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.app.watchapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -634,6 +644,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				MARKETING_VERSION = 1.0;
+				CODE_SIGN_ENTITLEMENTS = GoodBabyLife/tvOS/GoodBabyLifeTV.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.tv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -656,6 +667,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				MARKETING_VERSION = 1.0;
+				CODE_SIGN_ENTITLEMENTS = GoodBabyLife/tvOS/GoodBabyLifeTV.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodbabylife.tv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;

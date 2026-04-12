@@ -1,4 +1,5 @@
 import Foundation
+import SwiftData
 
 enum MilkType: String, Codable, CaseIterable, Identifiable {
     case breast = "breast"
@@ -24,16 +25,17 @@ enum MilkType: String, Codable, CaseIterable, Identifiable {
     }
 }
 
-struct MilkRecord: Identifiable, Codable {
-    let id: UUID
-    var date: Date
-    var type: MilkType
-    var amountML: Int
-    var durationMinutes: Int
-    var note: String
+@Model
+final class MilkRecord {
+    var id: UUID = UUID()
+    var date: Date = Date()
+    var type: MilkType = MilkType.formula
+    var amountML: Int = 120
+    var durationMinutes: Int = 15
+    var note: String = ""
 
-    init(id: UUID = UUID(), date: Date = Date(), type: MilkType = .formula, amountML: Int = 120, durationMinutes: Int = 15, note: String = "") {
-        self.id = id
+    init(date: Date = Date(), type: MilkType = .formula, amountML: Int = 120, durationMinutes: Int = 15, note: String = "") {
+        self.id = UUID()
         self.date = date
         self.type = type
         self.amountML = amountML
@@ -44,12 +46,6 @@ struct MilkRecord: Identifiable, Codable {
     var timeString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        return formatter.string(from: date)
-    }
-
-    var dateString: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: date)
     }
 }

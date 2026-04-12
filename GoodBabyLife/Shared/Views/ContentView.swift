@@ -14,50 +14,20 @@ struct ContentView: View {
     }
 }
 
-// MARK: - iOS & iPadOS
-
 struct iOSContentView: View {
     @Binding var selectedTab: Int
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationStack {
-                DashboardView()
-            }
-            .tabItem {
-                Label("首頁", systemImage: "house.fill")
-            }
-            .tag(0)
-
-            NavigationStack {
-                MilkTrackerView()
-            }
-            .tabItem {
-                Label("喝奶", systemImage: "cup.and.saucer.fill")
-            }
-            .tag(1)
-
-            NavigationStack {
-                FoodTrackerView()
-            }
-            .tabItem {
-                Label("副食品", systemImage: "fork.knife")
-            }
-            .tag(2)
-
-            NavigationStack {
-                TipsView()
-            }
-            .tabItem {
-                Label("小建議", systemImage: "lightbulb.fill")
-            }
-            .tag(3)
+            NavigationStack { DashboardView() }
+                .tabItem { Label("首頁", systemImage: "house.fill") }.tag(0)
+            NavigationStack { MilkTrackerView() }
+                .tabItem { Label("喝奶", systemImage: "cup.and.saucer.fill") }.tag(1)
+            NavigationStack { FoodTrackerView() }
+                .tabItem { Label("副食品", systemImage: "fork.knife") }.tag(2)
+            NavigationStack { TipsView() }
+                .tabItem { Label("小建議", systemImage: "lightbulb.fill") }.tag(3)
         }
         .tint(Color.babyPinkDark)
     }
-}
-
-#Preview {
-    ContentView()
-        .environment(DataStore())
 }

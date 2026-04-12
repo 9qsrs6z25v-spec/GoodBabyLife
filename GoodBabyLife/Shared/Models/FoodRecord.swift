@@ -1,4 +1,5 @@
 import Foundation
+import SwiftData
 
 enum FoodType: String, Codable, CaseIterable, Identifiable {
     case riceCereal = "rice_cereal"
@@ -63,17 +64,18 @@ enum BabyReaction: String, Codable, CaseIterable, Identifiable {
     }
 }
 
-struct FoodRecord: Identifiable, Codable {
-    let id: UUID
-    var date: Date
-    var type: FoodType
-    var name: String
-    var amountSpoons: Int
-    var reaction: BabyReaction
-    var note: String
+@Model
+final class FoodRecord {
+    var id: UUID = UUID()
+    var date: Date = Date()
+    var type: FoodType = FoodType.riceCereal
+    var name: String = ""
+    var amountSpoons: Int = 3
+    var reaction: BabyReaction = BabyReaction.like
+    var note: String = ""
 
-    init(id: UUID = UUID(), date: Date = Date(), type: FoodType = .riceCereal, name: String = "", amountSpoons: Int = 3, reaction: BabyReaction = .like, note: String = "") {
-        self.id = id
+    init(date: Date = Date(), type: FoodType = .riceCereal, name: String = "", amountSpoons: Int = 3, reaction: BabyReaction = .like, note: String = "") {
+        self.id = UUID()
         self.date = date
         self.type = type
         self.name = name
@@ -89,12 +91,6 @@ struct FoodRecord: Identifiable, Codable {
     var timeString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        return formatter.string(from: date)
-    }
-
-    var dateString: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: date)
     }
 }

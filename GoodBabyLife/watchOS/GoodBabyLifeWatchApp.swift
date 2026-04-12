@@ -2,12 +2,12 @@ import SwiftUI
 
 @main
 struct GoodBabyLifeWatchApp: App {
-    @State private var store = DataStore()
+    let container = BabyDataContainer.create()
 
     var body: some Scene {
         WindowGroup {
             WatchContentView()
-                .environment(store)
         }
+        .modelContainer(container)
     }
 }
